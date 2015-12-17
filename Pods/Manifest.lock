@@ -1,0 +1,10 @@
+PODS:
+  - MSPTouchableLabel (0.2.0)
+
+DEPENDENCIES:
+  - MSPTouchableLabel
+
+SPEC CHECKSUMS:
+  MSPTouchableLabel: 37d88088b641e11f6799b399ad51b1d47ba7b742
+
+COCOAPODS: 0.39.0

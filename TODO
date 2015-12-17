@@ -1,0 +1,21 @@
+[√] add new renderedText -esque property to Entry which shows uncompleted sentences
+[√] be able to map from index -> sentence within EntryComposer (in the case that a user taps a blank)
+[√] make SentenceDirectory structure have prefix: "", validEmoji: "", instead of current setup where the key is actually a value
+[√] fix EmojiKeyboard bugs
+[√] get button values from SentenceDirectory
+[ ] emoji entry functionality
+	( ) when setting our entry:
+		- generate an array indicating which sentences are in which textPieces for msptl
+	( ) when user taps via msptl:
+		- consult our generated array. note sentence as our "currentSentence". pull up keyboard for that prefix.
+	( ) when user chooses an emoji:
+		- set emoji on our currentSentence. save managedobject context. this will result in our entry getting set again, maybe.
+		- actually maybe not, since we'll be editing Sentence objects, not Entry objects, unless we add, delete, or rearrange. hmm...
+[ ] fix problem from above bullet point.
+[ ] change it from prefix in SentencesDirectory lookup to a new field which is like unique key which encompasses prefix, postfix, etc.
+[ ] autoselect new sentences.
+[ ] entrycomposer ui
+
+[ ] other functionality
+[ ] clean up code
+[ ] add unit tests
