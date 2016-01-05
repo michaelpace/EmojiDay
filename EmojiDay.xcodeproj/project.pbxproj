@@ -10,8 +10,8 @@
 		6404E8501C334A7800E40CAA /* DateHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6404E84F1C334A7800E40CAA /* DateHelpers.swift */; };
 		645A0FCB1C324331006EE700 /* SentenceChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645A0FCA1C324331006EE700 /* SentenceChooser.swift */; };
 		645A0FCD1C324359006EE700 /* SentenceChooser.xib in Resources */ = {isa = PBXBuildFile; fileRef = 645A0FCC1C324359006EE700 /* SentenceChooser.xib */; };
+		6462DDAA1C3DF37700FD441F /* EmojiKeyboardValues.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6462DDA91C3DF37700FD441F /* EmojiKeyboardValues.plist */; };
 		64B0E5821C21F9AD006F1733 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B0E5811C21F9AD006F1733 /* AppDelegate.swift */; };
-		64B0E5841C21F9AD006F1733 /* POCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B0E5831C21F9AD006F1733 /* POCViewController.swift */; };
 		64B0E5871C21F9AD006F1733 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B0E5851C21F9AD006F1733 /* Main.storyboard */; };
 		64B0E5891C21F9AD006F1733 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64B0E5881C21F9AD006F1733 /* Assets.xcassets */; };
 		64B0E58C1C21F9AD006F1733 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B0E58A1C21F9AD006F1733 /* LaunchScreen.storyboard */; };
@@ -22,6 +22,7 @@
 		64B0E5B71C21FEAC006F1733 /* EmojiKeyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64B0E5B61C21FEAC006F1733 /* EmojiKeyboard.xib */; };
 		64B0E5B91C22516B006F1733 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B0E5B81C22516B006F1733 /* Constants.swift */; };
 		64B0E5BB1C225754006F1733 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B0E5BA1C225754006F1733 /* Extensions.swift */; };
+		64B19E761C3E046500476CC3 /* EmojiKeyboardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B19E751C3E046500476CC3 /* EmojiKeyboardDataSource.swift */; };
 		64C58F3B1C24BBA900960AF7 /* Entry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C58F371C24BBA900960AF7 /* Entry+CoreDataProperties.swift */; };
 		64C58F3C1C24BBA900960AF7 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C58F381C24BBA900960AF7 /* Entry.swift */; };
 		64C58F3D1C24BBA900960AF7 /* Sentence+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C58F391C24BBA900960AF7 /* Sentence+CoreDataProperties.swift */; };
@@ -62,9 +63,9 @@
 		641D121D1C226EFE002B972C /* EmojiDay-BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EmojiDay-BridgingHeader.h"; sourceTree = "<group>"; };
 		645A0FCA1C324331006EE700 /* SentenceChooser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentenceChooser.swift; sourceTree = "<group>"; };
 		645A0FCC1C324359006EE700 /* SentenceChooser.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SentenceChooser.xib; sourceTree = "<group>"; };
+		6462DDA91C3DF37700FD441F /* EmojiKeyboardValues.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EmojiKeyboardValues.plist; sourceTree = "<group>"; };
 		64B0E57E1C21F9AD006F1733 /* EmojiDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmojiDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64B0E5811C21F9AD006F1733 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		64B0E5831C21F9AD006F1733 /* POCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POCViewController.swift; sourceTree = "<group>"; };
 		64B0E5861C21F9AD006F1733 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		64B0E5881C21F9AD006F1733 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64B0E58B1C21F9AD006F1733 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -80,6 +81,7 @@
 		64B0E5B61C21FEAC006F1733 /* EmojiKeyboard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmojiKeyboard.xib; sourceTree = "<group>"; };
 		64B0E5B81C22516B006F1733 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		64B0E5BA1C225754006F1733 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		64B19E751C3E046500476CC3 /* EmojiKeyboardDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiKeyboardDataSource.swift; sourceTree = "<group>"; };
 		64C58F371C24BBA900960AF7 /* Entry+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Entry+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		64C58F381C24BBA900960AF7 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		64C58F391C24BBA900960AF7 /* Sentence+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sentence+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -194,7 +196,7 @@
 			path = EmojiDayUITests;
 			sourceTree = "<group>";
 		};
-		64C58F361C24BB8300960AF7 /* models */ = {
+		64B19E771C3E050600476CC3 /* coredata */ = {
 			isa = PBXGroup;
 			children = (
 				64B0E5AF1C21FAF7006F1733 /* EmojiDay.xcdatamodeld */,
@@ -204,6 +206,14 @@
 				64C58F391C24BBA900960AF7 /* Sentence+CoreDataProperties.swift */,
 				64C58F3A1C24BBA900960AF7 /* Sentence.swift */,
 			);
+			name = coredata;
+			sourceTree = "<group>";
+		};
+		64C58F361C24BB8300960AF7 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				64B19E771C3E050600476CC3 /* coredata */,
+			);
 			name = models;
 			sourceTree = "<group>";
 		};
@@ -211,7 +221,6 @@
 			isa = PBXGroup;
 			children = (
 				64B0E5851C21F9AD006F1733 /* Main.storyboard */,
-				64B0E5831C21F9AD006F1733 /* POCViewController.swift */,
 				64F0159D1C31C7E000B0AFAB /* EntryListViewController.swift */,
 			);
 			name = "view controllers";
@@ -247,6 +256,8 @@
 				64DD01BF1C3460B5007D069D /* SentenceDirectory.swift */,
 				64DD01C31C34649A007D069D /* SentenceDirectory.plist */,
 				64DD01C11C346246007D069D /* EmojiHelpers.swift */,
+				64B19E751C3E046500476CC3 /* EmojiKeyboardDataSource.swift */,
+				6462DDA91C3DF37700FD441F /* EmojiKeyboardValues.plist */,
 			);
 			name = util;
 			sourceTree = "<group>";
@@ -369,6 +380,7 @@
 			files = (
 				64B0E58C1C21F9AD006F1733 /* LaunchScreen.storyboard in Resources */,
 				645A0FCD1C324359006EE700 /* SentenceChooser.xib in Resources */,
+				6462DDAA1C3DF37700FD441F /* EmojiKeyboardValues.plist in Resources */,
 				64B0E5891C21F9AD006F1733 /* Assets.xcassets in Resources */,
 				64DD01C41C34649A007D069D /* SentenceDirectory.plist in Resources */,
 				64F015A31C31CC0800B0AFAB /* EntryTableViewCell.xib in Resources */,
@@ -457,13 +469,13 @@
 				64B0E5BB1C225754006F1733 /* Extensions.swift in Sources */,
 				64F0159E1C31C7E000B0AFAB /* EntryListViewController.swift in Sources */,
 				64DD01C01C3460B5007D069D /* SentenceDirectory.swift in Sources */,
-				64B0E5841C21F9AD006F1733 /* POCViewController.swift in Sources */,
 				64B0E5821C21F9AD006F1733 /* AppDelegate.swift in Sources */,
 				64C5E95F1C31A36E00380D65 /* DataHelpers.swift in Sources */,
 				64B0E5B11C21FAF7006F1733 /* EmojiDay.xcdatamodeld in Sources */,
 				64F015A51C31CCAA00B0AFAB /* TableViewCellHelpers.swift in Sources */,
 				64C58F3D1C24BBA900960AF7 /* Sentence+CoreDataProperties.swift in Sources */,
 				64DD01C21C346246007D069D /* EmojiHelpers.swift in Sources */,
+				64B19E761C3E046500476CC3 /* EmojiKeyboardDataSource.swift in Sources */,
 				64F015A71C31CE8F00B0AFAB /* EntryComposer.swift in Sources */,
 				64B0E5B31C21FE1A006F1733 /* EmojiKeyboard.swift in Sources */,
 				6404E8501C334A7800E40CAA /* DateHelpers.swift in Sources */,

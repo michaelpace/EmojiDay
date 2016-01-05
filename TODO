@@ -3,19 +3,29 @@
 [√] make SentenceDirectory structure have prefix: "", validEmoji: "", instead of current setup where the key is actually a value
 [√] fix EmojiKeyboard bugs
 [√] get button values from SentenceDirectory
-[ ] emoji entry functionality
-	( ) when setting our entry:
-		- generate an array indicating which sentences are in which textPieces for msptl
-	( ) when user taps via msptl:
-		- consult our generated array. note sentence as our "currentSentence". pull up keyboard for that prefix.
-	( ) when user chooses an emoji:
-		- set emoji on our currentSentence. save managedobject context. this will result in our entry getting set again, maybe.
-		- actually maybe not, since we'll be editing Sentence objects, not Entry objects, unless we add, delete, or rearrange. hmm...
-[ ] fix problem from above bullet point.
-[ ] change it from prefix in SentencesDirectory lookup to a new field which is like unique key which encompasses prefix, postfix, etc.
+[√] emoji entry functionality
+[√] tableviewcells which can grow
+[ ] emojikeyboard ui which looks like apple keyboard
+	( ) create EmojiKeyboardValues.plist
+	( ) ask jennifer for images for all keyboard buttons
+	( ) layout buttons in emojikeyboard from top-to-bottom, left-to-right. group in pages as i am now. when moving on to a new section, move on to a new page, whether the current one is done or not.
+	( ) add labels for the pages
+	( ) replace current pageControl with one of following (probably the first one?) or make my own subclass:
+		https://github.com/Spaceman-Labs/SMPageControl
+		https://github.com/nicklockwood/FXPageControl
+		https://github.com/jonasschnelli/UIPageControl-I7BackStyle
+		https://github.com/Baglan/MCPagerView
+[ ] debug settings for e.g. setting timeframe from days to minutes, etc.
 [ ] autoselect new sentences.
 [ ] entrycomposer ui
+[ ] refactor code
 
-[ ] other functionality
 [ ] clean up code
 [ ] add unit tests
+[ ] local notification when hasn't been used in 1 week (?).
+	"Last Monday you <activity>. What are you up to today?",
+	where activity is a random sentence you had.
+	if activity == "Ate 🍆 ", then formatting == "ate 🍆 " (e.g., set the first character to be lowercase).
+	"Last Monday you ate 🍆 . What are you up to today?"
+[ ] separate emojikeyboard out into cocoapod?
+[ ] separate "custom" keyboard (e.g., you set the valid keys) into cocoapod?

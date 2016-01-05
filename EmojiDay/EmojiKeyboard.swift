@@ -17,6 +17,9 @@ protocol EmojiKeyboardDelegate : NSObjectProtocol {
 }
 
 class EmojiKeyboard: UIView, UIScrollViewDelegate {
+    
+    // MARK: Properties
+    
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var topAccentView: UIView!
     @IBOutlet weak var keysScrollView: UIScrollView!
@@ -29,8 +32,9 @@ class EmojiKeyboard: UIView, UIScrollViewDelegate {
     var numberOfKeysPerColumn: Int = 0
     var numberOfKeysPerPage: Int = 0
     var numberOfPages: Int = 0
+    let dataSource = EmojiKeyboardDataSource()
     
-    // MARK: - UIVIew
+    // MARK: UIVIew
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -71,13 +75,13 @@ class EmojiKeyboard: UIView, UIScrollViewDelegate {
         layoutButtons()
     }
     
-    // MARK: - UIScrollViewDelegate
+    // MARK: UIScrollViewDelegate
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         pageControl.currentPage = lroundf(Float(scrollView.contentOffset.x / scrollView.bounds.width))
     }
     
-    // MARK: - ()
+    // MARK: ()
     
     func layoutButtons() {
         for subview in keysScrollView.subviews {
@@ -113,7 +117,7 @@ class EmojiKeyboard: UIView, UIScrollViewDelegate {
         }
     }
     
-    // MARK: - Actions
+    // MARK: Actions
     
     func buttonPressed(sender: UIButton!) {
         let buttonText = sender.titleForState(UIControlState.Normal)

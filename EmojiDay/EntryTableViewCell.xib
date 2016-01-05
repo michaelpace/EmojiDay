@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -16,19 +15,23 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2h-9L-qFt" userLabel="entry composer wrapper view">
-                        <rect key="frame" x="12" y="12" width="296" height="19.5"/>
+                        <rect key="frame" x="4" y="4" width="312" height="35.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="d2h-9L-qFt" firstAttribute="leading" secondItem="c4A-aP-Lhv" secondAttribute="leadingMargin" constant="4" id="ZhB-EQ-BMk"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="d2h-9L-qFt" secondAttribute="bottom" constant="4" id="gNo-wY-QTX"/>
-                    <constraint firstItem="d2h-9L-qFt" firstAttribute="top" secondItem="c4A-aP-Lhv" secondAttribute="topMargin" constant="4" id="gTf-t1-12t"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="d2h-9L-qFt" secondAttribute="trailing" constant="4" id="pys-xp-lWe"/>
+                    <constraint firstItem="d2h-9L-qFt" firstAttribute="leading" secondItem="c4A-aP-Lhv" secondAttribute="leading" constant="4" id="ZhB-EQ-BMk"/>
+                    <constraint firstAttribute="bottom" secondItem="d2h-9L-qFt" secondAttribute="bottom" constant="4" id="gNo-wY-QTX"/>
+                    <constraint firstItem="d2h-9L-qFt" firstAttribute="top" secondItem="c4A-aP-Lhv" secondAttribute="top" constant="4" id="gTf-t1-12t"/>
+                    <constraint firstAttribute="trailing" secondItem="d2h-9L-qFt" secondAttribute="trailing" constant="4" id="pys-xp-lWe"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="entryComposerWrapperView" destination="d2h-9L-qFt" id="Owe-he-rn7"/>
+                <outlet property="entryComposerWrapperViewBottomConstraint" destination="gNo-wY-QTX" id="6QU-3l-x0k"/>
+                <outlet property="entryComposerWrapperViewLeadingConstraint" destination="ZhB-EQ-BMk" id="LAa-Fv-MqD"/>
+                <outlet property="entryComposerWrapperViewTopConstraint" destination="gTf-t1-12t" id="paf-06-abf"/>
+                <outlet property="entryComposerWrapperViewTrailingConstraint" destination="pys-xp-lWe" id="DVX-O7-XaE"/>
             </connections>
             <point key="canvasLocation" x="4" y="374"/>
         </tableViewCell>

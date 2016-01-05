@@ -8,6 +8,8 @@
 
 import Foundation
 
+private let entryComposerWrapperViewConstraintConstant = CGFloat(32.0)
+
 class EntryTableViewCell: UITableViewCell, TableViewCellData {
     
     // MARK: Properties
@@ -17,19 +19,34 @@ class EntryTableViewCell: UITableViewCell, TableViewCellData {
             entryComposer.entry = entry
         }
     }
+    
     var liveEntry: Bool = false {
         didSet {
             entryComposer.liveEntry = liveEntry
         }
     }
     
-    @IBOutlet weak var entryComposerWrapperView: UIView!
+    class var heightOfCellWithNoContent: CGFloat {
+        return entryComposerWrapperViewConstraintConstant * 2
+    }
+    
     var entryComposer: EntryComposer = NSBundle.mainBundle().loadNibNamed("EntryComposer", owner: nil, options: nil).first as! EntryComposer
+    
+    @IBOutlet weak var entryComposerWrapperView: UIView!
+    @IBOutlet weak var entryComposerWrapperViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var entryComposerWrapperViewTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var entryComposerWrapperViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var entryComposerWrapperViewBottomConstraint: NSLayoutConstraint!
     
     // MARK: UIView
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        entryComposerWrapperViewLeadingConstraint.constant = entryComposerWrapperViewConstraintConstant
+        entryComposerWrapperViewTrailingConstraint.constant = entryComposerWrapperViewConstraintConstant
+        entryComposerWrapperViewTopConstraint.constant = entryComposerWrapperViewConstraintConstant
+        entryComposerWrapperViewBottomConstraint.constant = entryComposerWrapperViewConstraintConstant
         
         entryComposer.frame = entryComposerWrapperView.bounds
         entryComposerWrapperView.addSubview(entryComposer)
@@ -39,6 +56,12 @@ class EntryTableViewCell: UITableViewCell, TableViewCellData {
     
     static var nibIdentifier: String {
         return "EntryTableViewCell"
+    }
+    
+    // MARK: ()
+    
+    class func widthOfEntryComposerGivenTableView(tableView: UITableView) -> CGFloat {
+        return tableView.bounds.width - (entryComposerWrapperViewConstraintConstant * 2)
     }
     
 }

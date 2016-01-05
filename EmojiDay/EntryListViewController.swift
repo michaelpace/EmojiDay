@@ -63,11 +63,7 @@ class EntryListViewController: UITableViewController, DataManagerDelegate, Sente
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(EntryTableViewCell.nibIdentifier, forIndexPath: indexPath) as! EntryTableViewCell
         
-        guard let entry: Entry = dataManager?.fetchedObjects[indexPath.row] as? Entry else {
-            fatalError(":(")
-        }
-        
-        cell.entry = entry
+        cell.entry = entryForIndexPath(indexPath)
         cell.liveEntry = indexPath.row == 0
 
         return cell
@@ -76,6 +72,12 @@ class EntryListViewController: UITableViewController, DataManagerDelegate, Sente
     // MARK: UITableViewDelegate
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {}
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        let entry = entryForIndexPath(indexPath)
+        let maximumLineWidth = EntryTableViewCell.widthOfEntryComposerGivenTableView(tableView)
+        return entry.heightGivenMaximumLineWidth(maximumLineWidth) + EntryTableViewCell.heightOfCellWithNoContent
+    }
     
     // MARK: DataManagerDelegate
     
@@ -91,6 +93,14 @@ class EntryListViewController: UITableViewController, DataManagerDelegate, Sente
     }
     
     // MARK: ()
+    
+    private func entryForIndexPath(indexPath: NSIndexPath) -> Entry {
+        guard let entry = dataManager?.fetchedObjects[indexPath.row] as? Entry else {
+            fatalError(":(")
+        }
+        
+        return entry
+    }
     
     private func setupTableView() {
         tableView.registerNib(UINib(nibName: EntryTableViewCell.nibIdentifier, bundle: nil), forCellReuseIdentifier: EntryTableViewCell.nibIdentifier)

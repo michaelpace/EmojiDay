@@ -18,9 +18,10 @@ class Entry: NSManagedObject, ManagedObjectType {
         var outputString = ""
         for value in self.sentences! {
             let sentence: Sentence = value as! Sentence
-            if (sentence.isCompleted) {
+            // TODO
+//            if (sentence.isCompleted) {
                 outputString.appendContentsOf(sentence.renderedText)
-            }
+//            }
         }
         
         return outputString
@@ -48,24 +49,52 @@ class Entry: NSManagedObject, ManagedObjectType {
     }
     
     func addSentenceWithPrefix(prefix: String, emoji: String?) {
-        var sentence: Sentence?
-        
         if let lastSentence = sentences?.lastObject as? Sentence {
             if (!lastSentence.isCompleted && DateHelpers.dateIsToday(date!)) {
-                sentence = lastSentence
+                lastSentence.prefix = prefix
+                lastSentence.emoji = emoji
+                
+                return
             }
         }
         
-        if (sentence == nil) {
-            sentence = NSEntityDescription.insertNewObjectForEntityForName(Sentence.entityName, inManagedObjectContext: DataHelpers.sharedInstance.managedObjectContext) as? Sentence
+        let mutableSentences = sentences?.mutableCopy() as! NSMutableOrderedSet
+        let newSentence = NSEntityDescription.insertNewObjectForEntityForName(Sentence.entityName, inManagedObjectContext: DataHelpers.sharedInstance.managedObjectContext) as! Sentence
+        newSentence.prefix = prefix
+        newSentence.emoji = emoji
+        newSentence.entry = self
+        mutableSentences.addObject(newSentence)
+        sentences = mutableSentences.copy() as? NSOrderedSet
+        try! DataHelpers.sharedInstance.managedObjectContext.save()
+    }
+    
+    func heightGivenMaximumLineWidth(maximumLineWidth: CGFloat) -> CGFloat {
+        // TODO: remove this logic. problems: (1) it is view code which doesn't belong in a model. (2) it works by mirroring logic in MSPTouchableLabel.
+        // possible solution? give MSPTouchableLabel a class method which can report its size given a maximum line width.
+        
+        let remainingWords = renderedText.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        var numberOfLines = 1
+        var currentLine = ""
+        
+        for (var i = 0; i < remainingWords.count * 2; i++) {
+            let currentLineSize = (currentLine as NSString).sizeWithAttributes(entryFontAttributes)
+            
+            let nextWord = i % 2 == 1 ? " " : remainingWords[i/2]
+            let nextWordSize = (nextWord as NSString).sizeWithAttributes(entryFontAttributes)
+            
+            if (currentLineSize.width + nextWordSize.width >= maximumLineWidth) {
+                numberOfLines += 1
+                currentLine = ""
+                if (nextWord != " ") {
+                    currentLine += nextWord
+                }
+            } else {
+                currentLine += nextWord
+            }
         }
         
-        sentence!.prefix = prefix
-        sentence!.emoji = emoji
-        
-        let mutableSentences = (sentences?.mutableCopy())!
-        mutableSentences.addObject(sentence!)
-        sentences = mutableSentences as? NSOrderedSet
+        let oneLineHeight = (renderedText as NSString).sizeWithAttributes(entryFontAttributes).height
+        return oneLineHeight * CGFloat(numberOfLines)
     }
     
 }

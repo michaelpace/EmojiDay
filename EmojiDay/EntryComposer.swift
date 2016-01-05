@@ -6,16 +6,6 @@
 //  Copyright © 2015 Michael Pace. All rights reserved.
 //
 
-/*
-
-rules:
-- select most recent blank.
-    - tap to add emoji to blank.
-    - backspace to delete emoji, or if no emoji (== !sentence.isCompleted), the sentence.
-- drag sentences to rearrange.
-
-*/
-
 import Foundation
 
 class EntryComposer: UIView, MSPTouchableLabelDataSource, MSPTouchableLabelDelegate, EmojiKeyboardDelegate {
@@ -31,6 +21,7 @@ class EntryComposer: UIView, MSPTouchableLabelDataSource, MSPTouchableLabelDeleg
     var liveEntry: Bool = false
     var emojiKeyboard: EmojiKeyboard?
     let hiddenTextView = UITextView()
+    var currentSentence: Sentence?
     
     // MARK: UIView
     
@@ -65,21 +56,25 @@ class EntryComposer: UIView, MSPTouchableLabelDataSource, MSPTouchableLabelDeleg
     }
     
     func attributesForTouchableLabel(touchableLabel: MSPTouchableLabel!, atIndex index: Int) -> [NSObject : AnyObject]! {
-        return [String: String]()
+        return entryFontAttributes
     }
     
     // MARK: MSPTouchableLabelDelegate
     
     func touchableLabel(touchableLabel: MSPTouchableLabel!, touchesDidEndAtIndex index: Int) {
-        let sentence: Sentence = entry?.sentences![index] as! Sentence
-        let validEmoji: [String] = SentenceDirectory.sharedInstance[sentence.prefix!]
+        currentSentence = entry?.sentences![index] as? Sentence
+        let validEmoji: [String] = SentenceDirectory.sharedInstance[currentSentence!.prefix!]
         emojiKeyboard!.keys = validEmoji
         hiddenTextView.becomeFirstResponder()
     }
     
     // MARK: EmojiKeyboardDelegate
     
-    func emojiKeyboard(emojiKeyboard: EmojiKeyboard, didSelectButtonWithText text: String) {}
+    func emojiKeyboard(emojiKeyboard: EmojiKeyboard, didSelectButtonWithText text: String) {
+        currentSentence?.emoji = text
+        try! DataHelpers.sharedInstance.managedObjectContext.save()
+    }
+    
     func emojiKeyboardBackspaceTapped(emojiKeyboard: EmojiKeyboard) {}
     
 }

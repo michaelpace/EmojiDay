@@ -26,14 +26,28 @@ class Sentence: NSManagedObject, ManagedObjectType {
     
     var emojiStringValue: String {
         if (isCompleted) {
-            return " " + emoji!
+            return emoji!
         } else {
-            return " ____"
+            return "____"
         }
     }
     
     var renderedText: String {
-        return prefix! + emojiStringValue
+        return prefix! + " " + emojiStringValue + ". "
+    }
+    
+    // MARK: NSManagedObject
+    
+    override func willChangeValueForKey(key: String) {
+        super.willChangeValueForKey(key)
+        
+        entry?.willChangeValueForKey("sentences")
+    }
+    
+    override func didChangeValueForKey(key: String) {
+        super.didChangeValueForKey(key)
+        
+        entry?.didChangeValueForKey("sentences")
     }
 
 }
