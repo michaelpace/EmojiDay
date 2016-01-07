@@ -24,7 +24,9 @@ class DataHelpers {
         
         // make our persistent store coordinator. associate our model with it, and add a sqllite persistent store.
         let persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
+        // swiftlint:disable force_try
         try! persistentStoreCoordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil)
+        // swiftlint:enable force_try
         
         // finally, make a new context for this persistent store and return it
         let context = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
@@ -43,7 +45,7 @@ extension ManagedObjectType {
         return []
     }
     
-    public static var sortedFetchRequest:NSFetchRequest {
+    public static var sortedFetchRequest: NSFetchRequest {
         let request = NSFetchRequest(entityName: entityName)
         request.sortDescriptors = defaultSortDescriptors
         return request

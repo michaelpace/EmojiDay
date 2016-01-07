@@ -17,11 +17,11 @@ class EntryListViewController: UITableViewController, DataManagerDelegate, Sente
     var currentEntry: Entry {
         var entry: Entry? = dataManager?.fetchedObjects.first as? Entry
         
-        if (entry == nil) {
+        if entry == nil {
             entry = Entry.makeTodayEntry()
         }
         
-        if (DateHelpers.dateIsToday(entry!.date!)) {
+        if DateHelpers.dateIsToday(entry!.date!) {
             return entry!
         } else {
             // we don't have an entry for today yet. make one.
@@ -106,10 +106,10 @@ class EntryListViewController: UITableViewController, DataManagerDelegate, Sente
         tableView.registerNib(UINib(nibName: EntryTableViewCell.nibIdentifier, bundle: nil), forCellReuseIdentifier: EntryTableViewCell.nibIdentifier)
         let sentenceChooser: SentenceChooser = NSBundle.mainBundle().loadNibNamed("SentenceChooser", owner: self, options: nil)[0] as! SentenceChooser
         sentenceChooser.delegate = self
-        sentenceChooser.frame = CGRectMake(0, 0, view.bounds.width, 64)
+        sentenceChooser.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 64)
         tableView.allowsSelection = false
         tableView.tableHeaderView = sentenceChooser
-        tableView.tableFooterView = UIView(frame: CGRectZero)
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
     private func setupFetchedResultsController() {

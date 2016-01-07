@@ -15,13 +15,20 @@ class EntryComposer: UIView, MSPTouchableLabelDataSource, MSPTouchableLabelDeleg
     var entry: Entry? {
         didSet {
             touchableLabel.setNeedsDisplay()
+            if (currentSentence != entry?.sentences?.lastObject as? Sentence) {
+                currentSentence = (entry?.sentences?.lastObject)! as? Sentence
+            }
         }
     }
     @IBOutlet weak var touchableLabel: MSPTouchableLabel!
     var liveEntry: Bool = false
     var emojiKeyboard: EmojiKeyboard?
     let hiddenTextView = UITextView()
-    var currentSentence: Sentence?
+    var currentSentence: Sentence? {
+        didSet {
+            hiddenTextView.becomeFirstResponder()
+        }
+    }
     
     // MARK: UIView
     
@@ -48,10 +55,7 @@ class EntryComposer: UIView, MSPTouchableLabelDataSource, MSPTouchableLabelDeleg
         }
         
         var outputText = [String]()
-        for sentence: Sentence in (entry?.sentences?.array) as! [Sentence] {
-            outputText.append(sentence.renderedText)
-        }
-        
+        let _ = entry?.sentences?.array.map { outputText.append($0.renderedText) }
         return outputText
     }
     
@@ -63,9 +67,6 @@ class EntryComposer: UIView, MSPTouchableLabelDataSource, MSPTouchableLabelDeleg
     
     func touchableLabel(touchableLabel: MSPTouchableLabel!, touchesDidEndAtIndex index: Int) {
         currentSentence = entry?.sentences![index] as? Sentence
-        let validEmoji: [String] = SentenceDirectory.sharedInstance[currentSentence!.prefix!]
-        emojiKeyboard!.keys = validEmoji
-        hiddenTextView.becomeFirstResponder()
     }
     
     // MARK: EmojiKeyboardDelegate

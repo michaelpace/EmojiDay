@@ -50,7 +50,7 @@ class Entry: NSManagedObject, ManagedObjectType {
     
     func addSentenceWithPrefix(prefix: String, emoji: String?) {
         if let lastSentence = sentences?.lastObject as? Sentence {
-            if (!lastSentence.isCompleted && DateHelpers.dateIsToday(date!)) {
+            if !lastSentence.isCompleted && DateHelpers.dateIsToday(date!) {
                 lastSentence.prefix = prefix
                 lastSentence.emoji = emoji
                 
@@ -76,16 +76,16 @@ class Entry: NSManagedObject, ManagedObjectType {
         var numberOfLines = 1
         var currentLine = ""
         
-        for (var i = 0; i < remainingWords.count * 2; i++) {
+        for var i = 0; i < remainingWords.count * 2; i++ {
             let currentLineSize = (currentLine as NSString).sizeWithAttributes(entryFontAttributes)
             
             let nextWord = i % 2 == 1 ? " " : remainingWords[i/2]
             let nextWordSize = (nextWord as NSString).sizeWithAttributes(entryFontAttributes)
             
-            if (currentLineSize.width + nextWordSize.width >= maximumLineWidth) {
+            if currentLineSize.width + nextWordSize.width >= maximumLineWidth {
                 numberOfLines += 1
                 currentLine = ""
-                if (nextWord != " ") {
+                if nextWord != " " {
                     currentLine += nextWord
                 }
             } else {

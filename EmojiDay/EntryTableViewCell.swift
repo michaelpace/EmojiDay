@@ -17,6 +17,7 @@ class EntryTableViewCell: UITableViewCell, TableViewCellData {
     var entry: Entry? {
         didSet {
             entryComposer.entry = entry
+            dateLabel.text = entry?.date?.prettyFormatted
         }
     }
     
@@ -35,8 +36,8 @@ class EntryTableViewCell: UITableViewCell, TableViewCellData {
     @IBOutlet weak var entryComposerWrapperView: UIView!
     @IBOutlet weak var entryComposerWrapperViewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var entryComposerWrapperViewTrailingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var entryComposerWrapperViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var entryComposerWrapperViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var dateLabel: UILabel!
     
     // MARK: UIView
     
@@ -45,7 +46,6 @@ class EntryTableViewCell: UITableViewCell, TableViewCellData {
         
         entryComposerWrapperViewLeadingConstraint.constant = entryComposerWrapperViewConstraintConstant
         entryComposerWrapperViewTrailingConstraint.constant = entryComposerWrapperViewConstraintConstant
-        entryComposerWrapperViewTopConstraint.constant = entryComposerWrapperViewConstraintConstant
         entryComposerWrapperViewBottomConstraint.constant = entryComposerWrapperViewConstraintConstant
         
         entryComposer.frame = entryComposerWrapperView.bounds

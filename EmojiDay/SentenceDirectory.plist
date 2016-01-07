@@ -4,39 +4,33 @@
 <array>
 	<dict>
 		<key>emojis</key>
-		<array>
-			<string>🐥</string>
-            <string>💩</string>
-		</array>
+		<array/>
 		<key>prefix</key>
-		<string>Lolled at</string>
+		<string>Saw</string>
 	</dict>
 	<dict>
 		<key>emojis</key>
-		<array>
-			<string>🍎</string>
-            <string>🍪</string>
-            <string>🍟</string>
-		</array>
+		<array/>
 		<key>prefix</key>
 		<string>Ate</string>
 	</dict>
+	<dict>
+		<key>emojis</key>
+		<array/>
+		<key>prefix</key>
+		<string>Visited</string>
+	</dict>
     <dict>
         <key>emojis</key>
-        <array>
-            <string>😎</string>
-            <string>👮</string>
-            <string>💃</string>
-            <string>👫</string>
-            <string>👼</string>
-            <string>👳</string>
-            <string>👶</string>
-            <string>👻</string>
-            <string>👹</string>
-            <string>💀</string>
-        </array>
+        <array/>
         <key>prefix</key>
-        <string>Hung out with</string>
+        <string>Made</string>
+    </dict>
+    <dict>
+        <key>emojis</key>
+        <array/>
+        <key>prefix</key>
+        <string>Talked to</string>
     </dict>
 </array>
 </plist>

@@ -1,10 +1,13 @@
 PODS:
   - MSPTouchableLabel (0.2.0)
+  - SMPageControl (1.2)
 
 DEPENDENCIES:
   - MSPTouchableLabel
+  - SMPageControl
 
 SPEC CHECKSUMS:
   MSPTouchableLabel: 37d88088b641e11f6799b399ad51b1d47ba7b742
+  SMPageControl: 922892813001cfaf059e86e6801f46a967e9ee29
 
 COCOAPODS: 0.39.0

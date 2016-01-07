@@ -10,5 +10,6 @@
 #define EmojiDay_BridgingHeader_h
 
 #import "MSPTouchableLabel.h"
+#import "SMPageControl.h"
 
 #endif /* EmojiDay_BridgingHeader_h */

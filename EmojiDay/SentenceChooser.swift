@@ -28,7 +28,7 @@ class SentenceChooser: UIView {
         
         for prefix: String in prefixes {
             let button = UIButton(type: UIButtonType.RoundedRect)
-            button.frame = CGRectMake(x, 16, 64, 48)
+            button.frame = CGRect(x: x, y: 16, width: 64, height: 48)
             button.setTitle(prefix, forState: UIControlState.Normal)
             button.addTarget(self, action: "buttonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
             addSubview(button)

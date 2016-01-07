@@ -41,7 +41,7 @@ class SentenceDirectory {
         get {
             for sentence: [String: AnyObject] in directory {
                 let prefix = sentence["prefix"] as! String
-                if (prefix == index) {
+                if prefix == index {
                     return sentence["emojis"] as! [String]
                 }
             }

@@ -1,1 +1,2 @@
 pod 'MSPTouchableLabel'
+pod 'SMPageControl'

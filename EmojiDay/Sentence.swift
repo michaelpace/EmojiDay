@@ -25,7 +25,7 @@ class Sentence: NSManagedObject, ManagedObjectType {
     }
     
     var emojiStringValue: String {
-        if (isCompleted) {
+        if isCompleted {
             return emoji!
         } else {
             return "____"

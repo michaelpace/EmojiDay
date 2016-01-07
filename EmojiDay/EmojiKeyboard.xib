@@ -11,6 +11,15 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="DzT-RR-GJt">
+                    <rect key="frame" x="0.0" y="10" width="600" height="542"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="R3E-dD-uj9">
+                        <size key="itemSize" width="48" height="48"/>
+                        <size key="headerReferenceSize" width="50" height="50"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VDG-p5-EsU">
                     <rect key="frame" x="540" y="548" width="44" height="44"/>
                     <constraints>
@@ -22,12 +31,6 @@
                         <action selector="backspaceTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="tCv-VP-Xtz"/>
                     </connections>
                 </button>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1W5-Wb-3E8">
-                    <rect key="frame" x="0.0" y="10" width="600" height="538"/>
-                </scrollView>
-                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="gI3-Kd-Ymg">
-                    <rect key="frame" x="281" y="548" width="39" height="44"/>
-                </pageControl>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y9m-0k-0kX">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="2"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -35,25 +38,36 @@
                         <constraint firstAttribute="height" constant="2" id="CFZ-BY-4xG"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hkH-KY-hXc" customClass="SMPageControl">
+                    <rect key="frame" x="0.0" y="552" width="540" height="48"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="Vh7-D9-Pb6"/>
+                    </constraints>
+                    <connections>
+                        <action selector="pageChanged:" destination="iN0-l3-epB" eventType="valueChanged" id="DJN-Ll-Saw"/>
+                    </connections>
+                </view>
             </subviews>
             <constraints>
-                <constraint firstItem="gI3-Kd-Ymg" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="3UC-jP-RQT"/>
-                <constraint firstItem="VDG-p5-EsU" firstAttribute="centerY" secondItem="gI3-Kd-Ymg" secondAttribute="centerY" id="3m3-hH-dIy"/>
-                <constraint firstItem="1W5-Wb-3E8" firstAttribute="top" secondItem="Y9m-0k-0kX" secondAttribute="bottom" constant="8" id="7Me-LP-pfV"/>
-                <constraint firstAttribute="bottom" secondItem="gI3-Kd-Ymg" secondAttribute="bottom" constant="8" id="EZ8-3O-iyz"/>
-                <constraint firstItem="gI3-Kd-Ymg" firstAttribute="top" secondItem="1W5-Wb-3E8" secondAttribute="bottom" id="GOY-Zu-7fe"/>
+                <constraint firstItem="VDG-p5-EsU" firstAttribute="leading" secondItem="hkH-KY-hXc" secondAttribute="trailing" id="3F9-TY-SaC"/>
+                <constraint firstItem="DzT-RR-GJt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="FAi-AO-SXJ"/>
                 <constraint firstAttribute="trailing" secondItem="Y9m-0k-0kX" secondAttribute="trailing" id="OC3-Gs-hhK"/>
-                <constraint firstAttribute="trailing" secondItem="1W5-Wb-3E8" secondAttribute="trailing" id="QlW-D4-Hsl"/>
+                <constraint firstAttribute="bottom" secondItem="hkH-KY-hXc" secondAttribute="bottom" id="RCV-6D-R5l"/>
                 <constraint firstItem="Y9m-0k-0kX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="VIX-9E-UyW"/>
+                <constraint firstItem="hkH-KY-hXc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="bzx-bg-Nn1"/>
+                <constraint firstItem="DzT-RR-GJt" firstAttribute="top" secondItem="Y9m-0k-0kX" secondAttribute="bottom" constant="8" id="ct3-Kp-het"/>
                 <constraint firstAttribute="bottom" secondItem="VDG-p5-EsU" secondAttribute="bottom" constant="8" id="dqu-Wj-KrO"/>
                 <constraint firstAttribute="trailing" secondItem="VDG-p5-EsU" secondAttribute="trailing" constant="16" id="hxt-B3-oLD"/>
                 <constraint firstItem="Y9m-0k-0kX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="kWI-Fn-Sks"/>
-                <constraint firstItem="1W5-Wb-3E8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="lBr-nf-GgZ"/>
+                <constraint firstAttribute="trailing" secondItem="DzT-RR-GJt" secondAttribute="trailing" id="lSZ-2W-OdE"/>
+                <constraint firstItem="hkH-KY-hXc" firstAttribute="top" secondItem="DzT-RR-GJt" secondAttribute="bottom" id="p37-Oa-RNu"/>
             </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="backspaceKey" destination="VDG-p5-EsU" id="M9t-NT-Tuh"/>
-                <outlet property="keysScrollView" destination="1W5-Wb-3E8" id="QKw-9o-ZYL"/>
-                <outlet property="pageControl" destination="gI3-Kd-Ymg" id="d6m-27-cfj"/>
+                <outlet property="collectionView" destination="DzT-RR-GJt" id="JsE-tb-tau"/>
+                <outlet property="pageControl" destination="hkH-KY-hXc" id="Orv-cx-qyW"/>
                 <outlet property="topAccentView" destination="Y9m-0k-0kX" id="Ksr-q3-khf"/>
             </connections>
         </view>

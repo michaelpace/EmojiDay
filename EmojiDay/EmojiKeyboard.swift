@@ -11,124 +11,153 @@ import UIKit
 
 let buttonSize = CGFloat(48.0)
 
-protocol EmojiKeyboardDelegate : NSObjectProtocol {
+protocol EmojiKeyboardDelegate: NSObjectProtocol {
     func emojiKeyboard(emojiKeyboard: EmojiKeyboard, didSelectButtonWithText text: String)
     func emojiKeyboardBackspaceTapped(emojiKeyboard: EmojiKeyboard)
 }
 
-class EmojiKeyboard: UIView, UIScrollViewDelegate {
+protocol EmojiKeyboardDataSource: NSObjectProtocol {
+    func sectionsForEmojiKeyboard(emojiKeyboard: EmojiKeyboard) -> [EmojiKeyboardSection]
+}
+
+class EmojiKeyboard: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
     
     // MARK: Properties
     
-    @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var topAccentView: UIView!
-    @IBOutlet weak var keysScrollView: UIScrollView!
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var backspaceKey: UIButton!
+    @IBOutlet weak var pageControl: SMPageControl!
     
+    var dataSource: EmojiKeyboardDataSource = EmojiKeyboardValues.sharedInstance
     var delegate: EmojiKeyboardDelegate?
-    var keys: [String] = [String]()
     var accentColor: UIColor = UIColor.blueColor()
-    var numberOfKeysPerRow: Int = 0
-    var numberOfKeysPerColumn: Int = 0
-    var numberOfKeysPerPage: Int = 0
-    var numberOfPages: Int = 0
-    let dataSource = EmojiKeyboardDataSource()
+    var numberOfKeysPerColumn: Int = 5
+    var numberOfPages: Int = 8
     
     // MARK: UIVIew
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        keysScrollView.directionalLockEnabled = true
-        keysScrollView.pagingEnabled = true
-        keysScrollView.showsHorizontalScrollIndicator = false
-        keysScrollView.showsVerticalScrollIndicator = false
-        keysScrollView.delegate = self
+        collectionView.dataSource = self
+        collectionView.delegate = self
         
-        pageControl.userInteractionEnabled = false
+        autoresizingMask = UIViewAutoresizing.None  // honor our own frame instead of being forced into the system keyboard frame
+        let screenSize = UIScreen.mainScreen().bounds
+        frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.size.width, height: screenSize.height / 2)
+        
+        let layout = EmojiKeyboardCollectionViewLayout()
+        
+        collectionView.collectionViewLayout = layout
+        collectionView.registerNib(UINib.init(nibName: "EmojiKeyboardCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: EmojiKeyboardCollectionViewCell.reuseIdentifier)
+        collectionView.registerNib(UINib.init(nibName: "EmojiKeyboardSectionHeaderSupplementaryView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: EmojiKeyboardSectionHeaderSupplementaryView.reuseIdentifier)
+        collectionView.backgroundColor = self.backgroundColor
+        
         pageControl.currentPage = 0
+        pageControl.tapBehavior = SMPageControlTapBehavior.Jump
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        numberOfKeysPerRow = Int(keysScrollView.bounds.width / buttonSize)
-        numberOfKeysPerColumn = Int(keysScrollView.bounds.height / buttonSize)
-        numberOfKeysPerPage = Int(numberOfKeysPerRow * numberOfKeysPerColumn)
-        numberOfPages = Int(keys.count / numberOfKeysPerPage) + (keys.count % numberOfKeysPerPage > 0 ? 1 : 0)
-        
-        keysScrollView.contentSize = CGSizeMake(CGFloat(numberOfPages) * keysScrollView.bounds.width, keysScrollView.bounds.height)
-        
         pageControl.numberOfPages = numberOfPages
-        pageControl.hidden = numberOfPages <= 1
+        pageControl.hidesForSinglePage = true
         
         topAccentView.backgroundColor = accentColor
-        if let accentColorRGBComponents = accentColor.rgb() {
-            pageControl.pageIndicatorTintColor = UIColor(colorLiteralRed: accentColorRGBComponents.red, green: accentColorRGBComponents.green, blue: accentColorRGBComponents.blue, alpha: accentColorRGBComponents.alpha/3)
-        } else {
-            pageControl.pageIndicatorTintColor = accentColor
-        }
-        pageControl.currentPageIndicatorTintColor = accentColor
         backspaceKey.setTitleColor(accentColor, forState: UIControlState.Normal)
         backspaceKey.titleLabel?.font = UIFont.boldSystemFontOfSize(20.0)
         
-        layoutButtons()
-    }
-    
-    // MARK: UIScrollViewDelegate
-    
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        pageControl.currentPage = lroundf(Float(scrollView.contentOffset.x / scrollView.bounds.width))
-    }
-    
-    // MARK: ()
-    
-    func layoutButtons() {
-        for subview in keysScrollView.subviews {
-            subview.removeFromSuperview()
+        let layout = collectionView.collectionViewLayout as? EmojiKeyboardCollectionViewLayout
+        layout?.itemSize = sizeForKeyboardButtons()
+
+        var i = 0
+        let _ = dataSource.sectionsForEmojiKeyboard(self).map{
+            pageControl.setImage($0.icon, forPage: i)
+            pageControl.setCurrentImage($0.selectedIcon, forPage: i)
+            i++
         }
         
-        let drawPointLeftMostValue = (keysScrollView.bounds.width - (CGFloat(numberOfKeysPerRow) * buttonSize)) / 2
-        var drawPoint = CGPointMake(drawPointLeftMostValue, 0)
+        pageControl.indicatorDiameter = pageControl.bounds.width / CGFloat(pageControl.numberOfPages)
+        pageControl.indicatorMargin = 0
+    }
+    
+    // MARK: UICollectionViewDataSource
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return dataSource.sectionsForEmojiKeyboard(self)[section].emojis.count
+    }
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return dataSource.sectionsForEmojiKeyboard(self).count
+    }
+    
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        guard let header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: EmojiKeyboardSectionHeaderSupplementaryView.reuseIdentifier, forIndexPath: indexPath) as? EmojiKeyboardSectionHeaderSupplementaryView else {
+            fatalError()
+        }
         
-        var pageOffset = 0
+        let section = dataSource.sectionsForEmojiKeyboard(self)[indexPath.section]
+        header.titleLabel.text = section.title.uppercaseString
+        header.titleLabel.font = UIFont.boldSystemFontOfSize(12)
+        header.titleLabel.textColor = UIColor.grayColor()
         
-        for keyIndex in 0..<keys.count {
-            let emoji = keys[keyIndex]
-            
-            let button = UIButton(frame: CGRectMake(drawPoint.x, drawPoint.y, buttonSize, buttonSize))
-            button.setTitle(emoji, forState:UIControlState.Normal)
-            button.titleLabel?.font = UIFont.systemFontOfSize(28.0)
-            button.addTarget(self, action: "buttonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
-            
-            keysScrollView.addSubview(button)
-            
-            drawPoint.x += buttonSize
-            if ((drawPoint.x % keysScrollView.bounds.width) + buttonSize >= keysScrollView.bounds.width) {
-                drawPoint.y += buttonSize
-                
-                if ((drawPoint.y % keysScrollView.bounds.height) + buttonSize >= keysScrollView.bounds.height) {
-                    pageOffset += 1
-                    drawPoint.y = 0
-                }
-                
-                drawPoint.x = drawPointLeftMostValue + (CGFloat(pageOffset) * keysScrollView.bounds.width)
-            }
+        return header
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCellWithReuseIdentifier(EmojiKeyboardCollectionViewCell.reuseIdentifier, forIndexPath: indexPath) as? EmojiKeyboardCollectionViewCell else {
+            fatalError()
+        }
+        
+        let section = dataSource.sectionsForEmojiKeyboard(self)[indexPath.section]
+        let emoji = section.emojis[indexPath.row]
+        cell.emojiLabel.text = emoji.value
+        cell.backgroundColor = self.backgroundColor
+        
+        return cell
+    }
+    
+    // MARK: UICollectionViewDelegate
+
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let section = dataSource.sectionsForEmojiKeyboard(self)[indexPath.section]
+        let emoji = section.emojis[indexPath.row]
+        if delegate != nil {
+            delegate!.emojiKeyboard(self, didSelectButtonWithText: emoji.value)
+        }
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let point = CGPoint(x: (collectionView.contentOffset.x + collectionView.frame.size.width/2), y: (collectionView.frame.origin.y + collectionView.frame.size.height/2))
+        if let indexPath = collectionView.indexPathForItemAtPoint(point) {
+            pageControl.currentPage = indexPath.section
         }
     }
     
     // MARK: Actions
     
-    func buttonPressed(sender: UIButton!) {
-        let buttonText = sender.titleForState(UIControlState.Normal)
-        if (delegate != nil) {
-            delegate!.emojiKeyboard(self, didSelectButtonWithText: buttonText!)
+    @IBAction func backspaceTapped(sender: AnyObject) {
+        if delegate != nil {
+            delegate!.emojiKeyboardBackspaceTapped(self)
         }
     }
     
-    @IBAction func backspaceTapped(sender: AnyObject) {
-        if (delegate != nil) {
-            delegate!.emojiKeyboardBackspaceTapped(self)
-        }
+    @IBAction func pageChanged(sender: AnyObject) {
+        let indexPath = NSIndexPath(forItem: 0, inSection: pageControl.currentPage)
+        collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.Left, animated: false)
+    }
+    
+    // MARK: ()
+    
+    func sizeForKeyboardButtons() -> CGSize {
+        // TODO: enforce minimum button size per ios usability guidelines
+        
+        let collectionViewHeight = collectionView.bounds.height
+        let layout = collectionView.collectionViewLayout as! EmojiKeyboardCollectionViewLayout  // swiftlint:disable:this force_cast
+        let contentViewHeight = collectionViewHeight - layout.headerHeight
+        let cellSizeHeightAndWidth = contentViewHeight / CGFloat(numberOfKeysPerColumn)
+        
+        return CGSize(width: cellSizeHeightAndWidth, height: cellSizeHeightAndWidth)
     }
 }

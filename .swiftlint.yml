@@ -1,0 +1,14 @@
+disabled_rules:
+  - trailing_whitespace
+  - todo
+  # related to line or name lengths
+  - line_length
+  - type_name
+  - variable_name_max_length
+included:
+  - EmojiDay
+excluded:
+  - Carthage
+  - Pods
+  - Source/ExcludedFolder
+  - Source/ExcludedFile.swift

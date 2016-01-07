@@ -24,3 +24,15 @@ extension UIColor {
         }
     }
 }
+
+extension NSDate {
+    var prettyFormatted: String {
+        return formattedWith("EEEE, LLL. dd, yyyy")
+    }
+    
+    func formattedWith(format: String) -> String {
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = format
+        return formatter.stringFromDate(self)
+    }
+}
