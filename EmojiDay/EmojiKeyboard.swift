@@ -22,7 +22,7 @@ protocol EmojiKeyboardDataSource: NSObjectProtocol {
 
 class EmojiKeyboard: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    // MARK: Properties
+    // MARK: - Properties
     
     @IBOutlet weak var topAccentView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -31,11 +31,13 @@ class EmojiKeyboard: UIView, UICollectionViewDataSource, UICollectionViewDelegat
     
     var dataSource: EmojiKeyboardDataSource = EmojiKeyboardValues.sharedInstance
     var delegate: EmojiKeyboardDelegate?
-    var accentColor: UIColor = UIColor.blueColor()
-    var numberOfKeysPerColumn: Int = 5
-    var numberOfPages: Int = 8
+    var showRecentSection = false
+    var numberOfKeysPerColumn = 5
+    var accentColor = UIColor.blueColor()
+    var unselectedColor = UIColor.grayColor()
+    var numberOfPages = 8
     
-    // MARK: UIVIew
+    // MARK: - UIVIew
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -53,8 +55,7 @@ class EmojiKeyboard: UIView, UICollectionViewDataSource, UICollectionViewDelegat
         collectionView.registerNib(UINib.init(nibName: "EmojiKeyboardCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: EmojiKeyboardCollectionViewCell.reuseIdentifier)
         collectionView.registerNib(UINib.init(nibName: "EmojiKeyboardSectionHeaderSupplementaryView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: EmojiKeyboardSectionHeaderSupplementaryView.reuseIdentifier)
         collectionView.backgroundColor = self.backgroundColor
-        
-        pageControl.currentPage = 0
+
         pageControl.tapBehavior = SMPageControlTapBehavior.Jump
     }
     
@@ -73,16 +74,17 @@ class EmojiKeyboard: UIView, UICollectionViewDataSource, UICollectionViewDelegat
 
         var i = 0
         let _ = dataSource.sectionsForEmojiKeyboard(self).map{
-            pageControl.setImage($0.icon, forPage: i)
-            pageControl.setCurrentImage($0.selectedIcon, forPage: i)
+            pageControl.setImage(UIImage.newImageFromMaskImage($0.selectedIcon, inColor: unselectedColor), forPage: i)
+            pageControl.setCurrentImage(UIImage.newImageFromMaskImage($0.selectedIcon, inColor: accentColor), forPage: i)
             i++
         }
         
         pageControl.indicatorDiameter = pageControl.bounds.width / CGFloat(pageControl.numberOfPages)
         pageControl.indicatorMargin = 0
+        pageControl.currentPage = 0
     }
     
-    // MARK: UICollectionViewDataSource
+    // MARK: - UICollectionViewDataSource
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataSource.sectionsForEmojiKeyboard(self)[section].emojis.count
@@ -118,7 +120,7 @@ class EmojiKeyboard: UIView, UICollectionViewDataSource, UICollectionViewDelegat
         return cell
     }
     
-    // MARK: UICollectionViewDelegate
+    // MARK: - UICollectionViewDelegate
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let section = dataSource.sectionsForEmojiKeyboard(self)[indexPath.section]
@@ -135,7 +137,7 @@ class EmojiKeyboard: UIView, UICollectionViewDataSource, UICollectionViewDelegat
         }
     }
     
-    // MARK: Actions
+    // MARK: - Actions
     
     @IBAction func backspaceTapped(sender: AnyObject) {
         if delegate != nil {
@@ -148,9 +150,9 @@ class EmojiKeyboard: UIView, UICollectionViewDataSource, UICollectionViewDelegat
         collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.Left, animated: false)
     }
     
-    // MARK: ()
+    // MARK: - Private implementation
     
-    func sizeForKeyboardButtons() -> CGSize {
+    private func sizeForKeyboardButtons() -> CGSize {
         // TODO: enforce minimum button size per ios usability guidelines
         
         let collectionViewHeight = collectionView.bounds.height

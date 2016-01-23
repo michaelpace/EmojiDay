@@ -1,0 +1,6 @@
+framework module MSPTouchableLabel {
+  umbrella header "MSPTouchableLabel-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -7,102 +7,130 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		091B38F78A646167831271A54C18FFFC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
-		322FF215954D7737281044BAA258A41E /* SMPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4F11646FAD4C18590951A0E0D00A52 /* SMPageControl.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		328A2C83884C9823FED4C92AB94C9186 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
-		4B15FEA7C08AB18A8B44C95373925A51 /* MSPTouchableLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E0BF84215B1510B012F76C67A821787 /* MSPTouchableLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		613FE803A763E0CADA2B2D5DE448C0C5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
-		6D196A4FDBAE3F9AF07BEE37E0063FD6 /* MSPTouchableLabel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FE592E9AEC645BB7A02D5C8B3083498F /* MSPTouchableLabel-dummy.m */; };
-		7FDCF7862FD51D6550B1DE5AE8FB1234 /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 272643F56613CA0D336AE3DBF19DC404 /* Pods-dummy.m */; };
-		8A59D7EE72AD9F8A7A9B32E3E83BC5D1 /* MSPTouchableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E8328F3FC881087924A51EF1201B963C /* MSPTouchableLabel.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		A747DC190BD743D037BD3C207E212E35 /* SMPageControl-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FFE8C21C798E51B10F6CE3247958E940 /* SMPageControl-dummy.m */; };
-		E347A0603233B885B1644BAC6401F6E1 /* SMPageControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 843FE569FD4FADB9E7A87694752A84A4 /* SMPageControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0897CE7F50D037C07BB058130A84CFEC /* MSPTouchableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 326415905384CF5D3EA5FC6998E48763 /* MSPTouchableLabel.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		1707324050642E87F4C7F56C0D8701B9 /* SMPageControl-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB2FD6BAB9875316E9910EC2F2FB409 /* SMPageControl-dummy.m */; };
+		20F8C8BE9E4460171F35B8737160E2B0 /* SMPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = B86FA02AB81AC3BAB31A801D8EEA1E8C /* SMPageControl.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		2DAC2AEE52A961EF56D94F7B370CAC24 /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 894E5DA93A9F359521A89826BE6DA777 /* Pods-dummy.m */; };
+		4CDE85EF109F4BB7DCA6456A23DB03FC /* MSPTouchableLabel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA56285BC6BE56DE1E283FAEFF8E847 /* MSPTouchableLabel-dummy.m */; };
+		5D2155E6980FCF42D33B8B2EC0A7EAAC /* MSPTouchableLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = D1FA1D9CD760A85102754DF65C68AB92 /* MSPTouchableLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6881447AF7E22FDCDAE1E830FE7A9900 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
+		760998643A120BDC0903ADCA9D84C0E7 /* SMPageControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 289E622C3FF840A3733DBD70B52EE7FC /* SMPageControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9ED5AD09AA2C39297879DF3DECA6BE97 /* MSPTouchableLabel-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 896FA9CDEBE3E511160F00797A8FB53E /* MSPTouchableLabel-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B19890757209AA8B2AB2635465274939 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
+		B60EF458710D4ABAB13DF8C121F36856 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
+		D93CF5A7D46D37C896112788236DAF4B /* SMPageControl-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4ED0EA9964CD600BD3CFDA9E022DDDA6 /* SMPageControl-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EC5EBB7541F3085ECEAC77F1929B542C /* Pods-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BCC458FDD5F692BBB2BFC64BB5701FC /* Pods-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3269F834A9108DB1DB7DC7E62A90FA2B /* PBXContainerItemProxy */ = {
+		0037C91AC958D11EA80666A75820BDEE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = A4F81EEADEF3B010E358C32AE8B3E790;
+			remoteGlobalIDString = D499B67712D7ECCF9CB2C42657239B99;
 			remoteInfo = MSPTouchableLabel;
 		};
-		C059A71DA94ABD0194EC775AC2BACE3C /* PBXContainerItemProxy */ = {
+		4D7583FEB7598A8C1B781F521D2313FA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = EF10D5AC80BAB712E9F58BECD718EEE3;
+			remoteGlobalIDString = A54D1E899510A567D1AD6AF7FEC593A4;
 			remoteInfo = SMPageControl;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		10834806BD7B412BC24F347361FA2C8E /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
-		272643F56613CA0D336AE3DBF19DC404 /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
-		2CAC4E1FB53273C249D7185DCA555B79 /* MSPTouchableLabel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MSPTouchableLabel-prefix.pch"; sourceTree = "<group>"; };
-		37DB56D75062CC75FCB0966E1C6E8A8E /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
-		3B4F11646FAD4C18590951A0E0D00A52 /* SMPageControl.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SMPageControl.m; sourceTree = "<group>"; };
+		037A402CE612702D5C532694E2FF843F /* SMPageControl-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SMPageControl-prefix.pch"; sourceTree = "<group>"; };
+		0BA56285BC6BE56DE1E283FAEFF8E847 /* MSPTouchableLabel-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MSPTouchableLabel-dummy.m"; sourceTree = "<group>"; };
+		1A6D2E352A021963D9571E277321228F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		289E622C3FF840A3733DBD70B52EE7FC /* SMPageControl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SMPageControl.h; sourceTree = "<group>"; };
+		2BCC458FDD5F692BBB2BFC64BB5701FC /* Pods-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-umbrella.h"; sourceTree = "<group>"; };
+		2E6C4F476D7376D6A57CBE0FA36A92B1 /* SMPageControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SMPageControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		326415905384CF5D3EA5FC6998E48763 /* MSPTouchableLabel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MSPTouchableLabel.m; path = Source/MSPTouchableLabel.m; sourceTree = "<group>"; };
 		3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		43BFD3060D5F302DA86780D47B729FB7 /* libSMPageControl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSMPageControl.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		4E762F23EC34ED4A6FF3312D84E33A40 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
-		545AF3510FBC58845597B8E43DF14BCC /* SMPageControl-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SMPageControl-prefix.pch"; sourceTree = "<group>"; };
-		65F83E88AF167C82D65BA902E4737AE8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		6911BECA35E7518D864239B7E898EEF3 /* Pods-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-frameworks.sh"; sourceTree = "<group>"; };
-		843FE569FD4FADB9E7A87694752A84A4 /* SMPageControl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SMPageControl.h; sourceTree = "<group>"; };
-		8B4FC394DC7AC564D5CA75AE5ADC1F6B /* MSPTouchableLabel.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MSPTouchableLabel.xcconfig; sourceTree = "<group>"; };
-		98C98CDFB3F20F2925F6CD1F141BB14F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
-		9E0BF84215B1510B012F76C67A821787 /* MSPTouchableLabel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MSPTouchableLabel.h; path = MSPTouchableLabel/MSPTouchableLabel.h; sourceTree = "<group>"; };
-		A1A36D34413696BE466E2CA0AFF194DA /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
-		B3899E09C318C38F64E3CFC987EAFCE8 /* libMSPTouchableLabel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMSPTouchableLabel.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		B898FC93189F87A79204B7D59A1F1B82 /* SMPageControl.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SMPageControl.xcconfig; sourceTree = "<group>"; };
+		4ED0EA9964CD600BD3CFDA9E022DDDA6 /* SMPageControl-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SMPageControl-umbrella.h"; sourceTree = "<group>"; };
+		52A2E960351EEB125C530AF7B912A7CF /* MSPTouchableLabel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MSPTouchableLabel-prefix.pch"; sourceTree = "<group>"; };
+		79A9DEDC89FE8336BF5FEDAAF75BF7FC /* Pods.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Pods.modulemap; sourceTree = "<group>"; };
+		7BDB4CDE35DE52E6C8BD43DA94EA6D2A /* MSPTouchableLabel.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MSPTouchableLabel.xcconfig; sourceTree = "<group>"; };
+		81131AADD3DAE8D2571D69265839A445 /* MSPTouchableLabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MSPTouchableLabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		87B213035BAC5F75386F62D3C75D2342 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
+		894E5DA93A9F359521A89826BE6DA777 /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
+		896FA9CDEBE3E511160F00797A8FB53E /* MSPTouchableLabel-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MSPTouchableLabel-umbrella.h"; sourceTree = "<group>"; };
+		977577C045EDA9D9D1F46E2598D19FC7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
+		B86FA02AB81AC3BAB31A801D8EEA1E8C /* SMPageControl.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SMPageControl.m; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		E8328F3FC881087924A51EF1201B963C /* MSPTouchableLabel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MSPTouchableLabel.m; path = MSPTouchableLabel/MSPTouchableLabel.m; sourceTree = "<group>"; };
-		FE592E9AEC645BB7A02D5C8B3083498F /* MSPTouchableLabel-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MSPTouchableLabel-dummy.m"; sourceTree = "<group>"; };
-		FFE8C21C798E51B10F6CE3247958E940 /* SMPageControl-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SMPageControl-dummy.m"; sourceTree = "<group>"; };
+		BB44235932AD2E289AD34EBEA2D114D0 /* SMPageControl.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SMPageControl.xcconfig; sourceTree = "<group>"; };
+		C580AFA2A08C1C20072485091FDC8B99 /* SMPageControl.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SMPageControl.modulemap; sourceTree = "<group>"; };
+		CAB2FD6BAB9875316E9910EC2F2FB409 /* SMPageControl-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SMPageControl-dummy.m"; sourceTree = "<group>"; };
+		CBC0F7C552B739C909B650A0F42F7F38 /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
+		D0405803033A2A777B8E4DFA0C1800ED /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
+		D1FA1D9CD760A85102754DF65C68AB92 /* MSPTouchableLabel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MSPTouchableLabel.h; path = Source/MSPTouchableLabel.h; sourceTree = "<group>"; };
+		D4D78A5CB5D95460993EC5946D1B1C55 /* MSPTouchableLabel.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = MSPTouchableLabel.modulemap; sourceTree = "<group>"; };
+		D738B37D5EA4994B7393FBB50F06274D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DA312349A49333542E6F4B36B329960E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
+		E7F21354943D9F42A70697D5A5EF72E9 /* Pods-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-frameworks.sh"; sourceTree = "<group>"; };
+		E8446514FBAD26C0E18F24A5715AEF67 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE57CBC2F7548347F3ADAAFF1352E411 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		210CB7BF4A191831818D49F97ABFE545 /* Frameworks */ = {
+		43635B8E18391E2D4FF6A9B40FC4B0F3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				091B38F78A646167831271A54C18FFFC /* Foundation.framework in Frameworks */,
+				6881447AF7E22FDCDAE1E830FE7A9900 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7D48C8AFF88A62735BCB79A550024B54 /* Frameworks */ = {
+		9A47C5EB43CEB696CDBF04606B50200C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				613FE803A763E0CADA2B2D5DE448C0C5 /* Foundation.framework in Frameworks */,
+				B60EF458710D4ABAB13DF8C121F36856 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ABC795C12C5436F2BC395FA7E9ABCD1F /* Frameworks */ = {
+		A56FA1451FC3F9D959935C4BEDCBFCF7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				328A2C83884C9823FED4C92AB94C9186 /* Foundation.framework in Frameworks */,
+				B19890757209AA8B2AB2635465274939 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		037C0CA694176A3C0915F62C9D20B3E6 /* Targets Support Files */ = {
+		04228957ED733B88587BB015A24AA80B /* SMPageControl */ = {
 			isa = PBXGroup;
 			children = (
-				B3D1D13E0C6553800746CB8FD61CF946 /* Pods */,
+				289E622C3FF840A3733DBD70B52EE7FC /* SMPageControl.h */,
+				B86FA02AB81AC3BAB31A801D8EEA1E8C /* SMPageControl.m */,
+				7D38CE9C6430BCC752B244EFC6D383BD /* Support Files */,
 			);
-			name = "Targets Support Files";
+			path = SMPageControl;
 			sourceTree = "<group>";
 		};
-		3373CD02207C2032A51E045FED2A52F3 /* MSPTouchableLabel */ = {
+		245E74616B8985623F509620D836654B /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				9E0BF84215B1510B012F76C67A821787 /* MSPTouchableLabel.h */,
-				E8328F3FC881087924A51EF1201B963C /* MSPTouchableLabel.m */,
-				A9A671037AEA92896E291B50933CC7D8 /* Support Files */,
+				1A6D2E352A021963D9571E277321228F /* Info.plist */,
+				D4D78A5CB5D95460993EC5946D1B1C55 /* MSPTouchableLabel.modulemap */,
+				7BDB4CDE35DE52E6C8BD43DA94EA6D2A /* MSPTouchableLabel.xcconfig */,
+				0BA56285BC6BE56DE1E283FAEFF8E847 /* MSPTouchableLabel-dummy.m */,
+				52A2E960351EEB125C530AF7B912A7CF /* MSPTouchableLabel-prefix.pch */,
+				896FA9CDEBE3E511160F00797A8FB53E /* MSPTouchableLabel-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/MSPTouchableLabel";
+			sourceTree = "<group>";
+		};
+		3569DEF4C5904752F41144D4C2BDB884 /* MSPTouchableLabel */ = {
+			isa = PBXGroup;
+			children = (
+				D1FA1D9CD760A85102754DF65C68AB92 /* MSPTouchableLabel.h */,
+				326415905384CF5D3EA5FC6998E48763 /* MSPTouchableLabel.m */,
+				245E74616B8985623F509620D836654B /* Support Files */,
 			);
 			path = MSPTouchableLabel;
 			sourceTree = "<group>";
@@ -110,10 +138,42 @@
 		630FE246C509D36B45B8968361C79541 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3373CD02207C2032A51E045FED2A52F3 /* MSPTouchableLabel */,
-				BCDA4B29CF67B5A7C873DD11C776914A /* SMPageControl */,
+				3569DEF4C5904752F41144D4C2BDB884 /* MSPTouchableLabel */,
+				04228957ED733B88587BB015A24AA80B /* SMPageControl */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		75D98FF52E597A11900E131B6C4E1ADA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E8446514FBAD26C0E18F24A5715AEF67 /* Info.plist */,
+				79A9DEDC89FE8336BF5FEDAAF75BF7FC /* Pods.modulemap */,
+				D0405803033A2A777B8E4DFA0C1800ED /* Pods-acknowledgements.markdown */,
+				87B213035BAC5F75386F62D3C75D2342 /* Pods-acknowledgements.plist */,
+				894E5DA93A9F359521A89826BE6DA777 /* Pods-dummy.m */,
+				E7F21354943D9F42A70697D5A5EF72E9 /* Pods-frameworks.sh */,
+				CBC0F7C552B739C909B650A0F42F7F38 /* Pods-resources.sh */,
+				2BCC458FDD5F692BBB2BFC64BB5701FC /* Pods-umbrella.h */,
+				977577C045EDA9D9D1F46E2598D19FC7 /* Pods.debug.xcconfig */,
+				DA312349A49333542E6F4B36B329960E /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			path = "Target Support Files/Pods";
+			sourceTree = "<group>";
+		};
+		7D38CE9C6430BCC752B244EFC6D383BD /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				D738B37D5EA4994B7393FBB50F06274D /* Info.plist */,
+				C580AFA2A08C1C20072485091FDC8B99 /* SMPageControl.modulemap */,
+				BB44235932AD2E289AD34EBEA2D114D0 /* SMPageControl.xcconfig */,
+				CAB2FD6BAB9875316E9910EC2F2FB409 /* SMPageControl-dummy.m */,
+				037A402CE612702D5C532694E2FF843F /* SMPageControl-prefix.pch */,
+				4ED0EA9964CD600BD3CFDA9E022DDDA6 /* SMPageControl-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SMPageControl";
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -122,35 +182,27 @@
 				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
 				630FE246C509D36B45B8968361C79541 /* Pods */,
-				DDD74584A91D242B3EF6D46981D4F1DA /* Products */,
-				037C0CA694176A3C0915F62C9D20B3E6 /* Targets Support Files */,
+				A9A714C91A43B1AF71193988B5F111F7 /* Products */,
+				B7B80995527643776607AFFA75B91E24 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		A9A671037AEA92896E291B50933CC7D8 /* Support Files */ = {
+		A9A714C91A43B1AF71193988B5F111F7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8B4FC394DC7AC564D5CA75AE5ADC1F6B /* MSPTouchableLabel.xcconfig */,
-				FE592E9AEC645BB7A02D5C8B3083498F /* MSPTouchableLabel-dummy.m */,
-				2CAC4E1FB53273C249D7185DCA555B79 /* MSPTouchableLabel-prefix.pch */,
+				81131AADD3DAE8D2571D69265839A445 /* MSPTouchableLabel.framework */,
+				EE57CBC2F7548347F3ADAAFF1352E411 /* Pods.framework */,
+				2E6C4F476D7376D6A57CBE0FA36A92B1 /* SMPageControl.framework */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/MSPTouchableLabel";
+			name = Products;
 			sourceTree = "<group>";
 		};
-		B3D1D13E0C6553800746CB8FD61CF946 /* Pods */ = {
+		B7B80995527643776607AFFA75B91E24 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				37DB56D75062CC75FCB0966E1C6E8A8E /* Pods-acknowledgements.markdown */,
-				10834806BD7B412BC24F347361FA2C8E /* Pods-acknowledgements.plist */,
-				272643F56613CA0D336AE3DBF19DC404 /* Pods-dummy.m */,
-				6911BECA35E7518D864239B7E898EEF3 /* Pods-frameworks.sh */,
-				A1A36D34413696BE466E2CA0AFF194DA /* Pods-resources.sh */,
-				4E762F23EC34ED4A6FF3312D84E33A40 /* Pods.debug.xcconfig */,
-				98C98CDFB3F20F2925F6CD1F141BB14F /* Pods.release.xcconfig */,
+				75D98FF52E597A11900E131B6C4E1ADA /* Pods */,
 			);
-			name = Pods;
-			path = "Target Support Files/Pods";
+			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -161,16 +213,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		BCDA4B29CF67B5A7C873DD11C776914A /* SMPageControl */ = {
-			isa = PBXGroup;
-			children = (
-				843FE569FD4FADB9E7A87694752A84A4 /* SMPageControl.h */,
-				3B4F11646FAD4C18590951A0E0D00A52 /* SMPageControl.m */,
-				E80E76B36F89A4EAF703A103BBC5AD22 /* Support Files */,
-			);
-			path = SMPageControl;
-			sourceTree = "<group>";
-		};
 		BF6342C8B29F4CEEA088EFF7AB4DE362 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,91 +221,64 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		DDD74584A91D242B3EF6D46981D4F1DA /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B3899E09C318C38F64E3CFC987EAFCE8 /* libMSPTouchableLabel.a */,
-				65F83E88AF167C82D65BA902E4737AE8 /* libPods.a */,
-				43BFD3060D5F302DA86780D47B729FB7 /* libSMPageControl.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		E80E76B36F89A4EAF703A103BBC5AD22 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				B898FC93189F87A79204B7D59A1F1B82 /* SMPageControl.xcconfig */,
-				FFE8C21C798E51B10F6CE3247958E940 /* SMPageControl-dummy.m */,
-				545AF3510FBC58845597B8E43DF14BCC /* SMPageControl-prefix.pch */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/SMPageControl";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		6DD44B4E96DB963CEBD54D6757507C78 /* Headers */ = {
+		447889CA1B6F9DDB8A75ED58D1CF710B /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E347A0603233B885B1644BAC6401F6E1 /* SMPageControl.h in Headers */,
+				D93CF5A7D46D37C896112788236DAF4B /* SMPageControl-umbrella.h in Headers */,
+				760998643A120BDC0903ADCA9D84C0E7 /* SMPageControl.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DD6EAF69E1DCB9EA8DF9DD99F1888BBF /* Headers */ = {
+		453CC5883C8355095178167D7515556D /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B15FEA7C08AB18A8B44C95373925A51 /* MSPTouchableLabel.h in Headers */,
+				9ED5AD09AA2C39297879DF3DECA6BE97 /* MSPTouchableLabel-umbrella.h in Headers */,
+				5D2155E6980FCF42D33B8B2EC0A7EAAC /* MSPTouchableLabel.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5005117F6BB670E02E8481FFEA26B522 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC5EBB7541F3085ECEAC77F1929B542C /* Pods-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		A4F81EEADEF3B010E358C32AE8B3E790 /* MSPTouchableLabel */ = {
+		9953542F9F50190AA2A41160E889C1A7 /* Pods */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DAED7CF72A495EC518D2B7DE33421651 /* Build configuration list for PBXNativeTarget "MSPTouchableLabel" */;
+			buildConfigurationList = 9DD7CC5E11BAAFDCAB7A59B80E776E61 /* Build configuration list for PBXNativeTarget "Pods" */;
 			buildPhases = (
-				B8CD19DEFB721B8F218028C40D1CA27C /* Sources */,
-				ABC795C12C5436F2BC395FA7E9ABCD1F /* Frameworks */,
-				DD6EAF69E1DCB9EA8DF9DD99F1888BBF /* Headers */,
+				46C0A8F3B652658D7D0F580ACDC45B0E /* Sources */,
+				A56FA1451FC3F9D959935C4BEDCBFCF7 /* Frameworks */,
+				5005117F6BB670E02E8481FFEA26B522 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-			);
-			name = MSPTouchableLabel;
-			productName = MSPTouchableLabel;
-			productReference = B3899E09C318C38F64E3CFC987EAFCE8 /* libMSPTouchableLabel.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		E3267B81173C56C979D5193786CA3CEE /* Pods */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A2D82A2F556A2A2C726359ECAA0104C1 /* Build configuration list for PBXNativeTarget "Pods" */;
-			buildPhases = (
-				93472D87A9542BE9BF7627C1538944B8 /* Sources */,
-				210CB7BF4A191831818D49F97ABFE545 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8691E01880646663A7BAAC8350494473 /* PBXTargetDependency */,
-				8AAD906885DD95B3489A9DC5B8382872 /* PBXTargetDependency */,
+				81FA6CA87F9634A8FADC4294465E7217 /* PBXTargetDependency */,
+				F86FC5702E17F9707D48A1D652826ED7 /* PBXTargetDependency */,
 			);
 			name = Pods;
 			productName = Pods;
-			productReference = 65F83E88AF167C82D65BA902E4737AE8 /* libPods.a */;
-			productType = "com.apple.product-type.library.static";
+			productReference = EE57CBC2F7548347F3ADAAFF1352E411 /* Pods.framework */;
+			productType = "com.apple.product-type.framework";
 		};
-		EF10D5AC80BAB712E9F58BECD718EEE3 /* SMPageControl */ = {
+		A54D1E899510A567D1AD6AF7FEC593A4 /* SMPageControl */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 09732B92E47F4933818077C0D4D16122 /* Build configuration list for PBXNativeTarget "SMPageControl" */;
+			buildConfigurationList = 8E9537F78C99416EDAC44EC4CCE80418 /* Build configuration list for PBXNativeTarget "SMPageControl" */;
 			buildPhases = (
-				5AC18828725A9D463E9678113A26287A /* Sources */,
-				7D48C8AFF88A62735BCB79A550024B54 /* Frameworks */,
-				6DD44B4E96DB963CEBD54D6757507C78 /* Headers */,
+				8C048C71587008BC49CBE93A60A65ADC /* Sources */,
+				9A47C5EB43CEB696CDBF04606B50200C /* Frameworks */,
+				447889CA1B6F9DDB8A75ED58D1CF710B /* Headers */,
 			);
 			buildRules = (
 			);
@@ -271,8 +286,25 @@
 			);
 			name = SMPageControl;
 			productName = SMPageControl;
-			productReference = 43BFD3060D5F302DA86780D47B729FB7 /* libSMPageControl.a */;
-			productType = "com.apple.product-type.library.static";
+			productReference = 2E6C4F476D7376D6A57CBE0FA36A92B1 /* SMPageControl.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D499B67712D7ECCF9CB2C42657239B99 /* MSPTouchableLabel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A022CD7B84A72AEDF90B12CFDEE2118B /* Build configuration list for PBXNativeTarget "MSPTouchableLabel" */;
+			buildPhases = (
+				44ECE9348C3BA30A3285288EED53CDAC /* Sources */,
+				43635B8E18391E2D4FF6A9B40FC4B0F3 /* Frameworks */,
+				453CC5883C8355095178167D7515556D /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MSPTouchableLabel;
+			productName = MSPTouchableLabel;
+			productReference = 81131AADD3DAE8D2571D69265839A445 /* MSPTouchableLabel.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -281,7 +313,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0720;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -291,165 +323,205 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = DDD74584A91D242B3EF6D46981D4F1DA /* Products */;
+			productRefGroup = A9A714C91A43B1AF71193988B5F111F7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A4F81EEADEF3B010E358C32AE8B3E790 /* MSPTouchableLabel */,
-				E3267B81173C56C979D5193786CA3CEE /* Pods */,
-				EF10D5AC80BAB712E9F58BECD718EEE3 /* SMPageControl */,
+				D499B67712D7ECCF9CB2C42657239B99 /* MSPTouchableLabel */,
+				9953542F9F50190AA2A41160E889C1A7 /* Pods */,
+				A54D1E899510A567D1AD6AF7FEC593A4 /* SMPageControl */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		5AC18828725A9D463E9678113A26287A /* Sources */ = {
+		44ECE9348C3BA30A3285288EED53CDAC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A747DC190BD743D037BD3C207E212E35 /* SMPageControl-dummy.m in Sources */,
-				322FF215954D7737281044BAA258A41E /* SMPageControl.m in Sources */,
+				4CDE85EF109F4BB7DCA6456A23DB03FC /* MSPTouchableLabel-dummy.m in Sources */,
+				0897CE7F50D037C07BB058130A84CFEC /* MSPTouchableLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		93472D87A9542BE9BF7627C1538944B8 /* Sources */ = {
+		46C0A8F3B652658D7D0F580ACDC45B0E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7FDCF7862FD51D6550B1DE5AE8FB1234 /* Pods-dummy.m in Sources */,
+				2DAC2AEE52A961EF56D94F7B370CAC24 /* Pods-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8CD19DEFB721B8F218028C40D1CA27C /* Sources */ = {
+		8C048C71587008BC49CBE93A60A65ADC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D196A4FDBAE3F9AF07BEE37E0063FD6 /* MSPTouchableLabel-dummy.m in Sources */,
-				8A59D7EE72AD9F8A7A9B32E3E83BC5D1 /* MSPTouchableLabel.m in Sources */,
+				1707324050642E87F4C7F56C0D8701B9 /* SMPageControl-dummy.m in Sources */,
+				20F8C8BE9E4460171F35B8737160E2B0 /* SMPageControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		8691E01880646663A7BAAC8350494473 /* PBXTargetDependency */ = {
+		81FA6CA87F9634A8FADC4294465E7217 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = MSPTouchableLabel;
-			target = A4F81EEADEF3B010E358C32AE8B3E790 /* MSPTouchableLabel */;
-			targetProxy = 3269F834A9108DB1DB7DC7E62A90FA2B /* PBXContainerItemProxy */;
+			target = D499B67712D7ECCF9CB2C42657239B99 /* MSPTouchableLabel */;
+			targetProxy = 0037C91AC958D11EA80666A75820BDEE /* PBXContainerItemProxy */;
 		};
-		8AAD906885DD95B3489A9DC5B8382872 /* PBXTargetDependency */ = {
+		F86FC5702E17F9707D48A1D652826ED7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SMPageControl;
-			target = EF10D5AC80BAB712E9F58BECD718EEE3 /* SMPageControl */;
-			targetProxy = C059A71DA94ABD0194EC775AC2BACE3C /* PBXContainerItemProxy */;
+			target = A54D1E899510A567D1AD6AF7FEC593A4 /* SMPageControl */;
+			targetProxy = 4D7583FEB7598A8C1B781F521D2313FA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0DC276594F1070923C76D90CEBE848FE /* Release */ = {
+		29346E07BD7E21EBDBF350B7556AA51A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B898FC93189F87A79204B7D59A1F1B82 /* SMPageControl.xcconfig */;
+			baseConfigurationReference = DA312349A49333542E6F4B36B329960E /* Pods.release.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SMPageControl/SMPageControl-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		11C0C11AB9BB9A207A3D28A727C6E0CC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E762F23EC34ED4A6FF3312D84E33A40 /* Pods.debug.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		63D2A50A503DD49F5A5701B9985F9B9E /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 98C98CDFB3F20F2925F6CD1F141BB14F /* Pods.release.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
-				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods/Pods.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		7ED9C231833A97D0F7B865EC4303902E /* Debug */ = {
+		62F142A200D1C727D662CD82675FC8C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B898FC93189F87A79204B7D59A1F1B82 /* SMPageControl.xcconfig */;
+			baseConfigurationReference = BB44235932AD2E289AD34EBEA2D114D0 /* SMPageControl.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/SMPageControl/SMPageControl-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SMPageControl/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SMPageControl/SMPageControl.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = SMPageControl;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		A14365EF0EC32BA5AF175BDB5F57B31E /* Release */ = {
+		9E2D8D2DB75B6A43118221A76B3CA8A6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B4FC394DC7AC564D5CA75AE5ADC1F6B /* MSPTouchableLabel.xcconfig */;
+			baseConfigurationReference = 7BDB4CDE35DE52E6C8BD43DA94EA6D2A /* MSPTouchableLabel.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/MSPTouchableLabel/MSPTouchableLabel-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MSPTouchableLabel/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MSPTouchableLabel/MSPTouchableLabel.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = MSPTouchableLabel;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9F052B5D0BC34622DB4E9A0FFEFE6FF6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB44235932AD2E289AD34EBEA2D114D0 /* SMPageControl.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SMPageControl/SMPageControl-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SMPageControl/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SMPageControl/SMPageControl.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = SMPageControl;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		A994697E76C1C249661D50E65A368CBA /* Debug */ = {
+		A0190B5D8D2427400A648EA879E06EEE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B4FC394DC7AC564D5CA75AE5ADC1F6B /* MSPTouchableLabel.xcconfig */;
+			baseConfigurationReference = 977577C045EDA9D9D1F46E2598D19FC7 /* Pods.debug.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/MSPTouchableLabel/MSPTouchableLabel-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods/Pods.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
@@ -471,6 +543,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -526,18 +599,37 @@
 			};
 			name = Release;
 		};
+		F1EE6C4897A5E1B423C18D647F21CC6F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BDB4CDE35DE52E6C8BD43DA94EA6D2A /* MSPTouchableLabel.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/MSPTouchableLabel/MSPTouchableLabel-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MSPTouchableLabel/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MSPTouchableLabel/MSPTouchableLabel.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = MSPTouchableLabel;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		09732B92E47F4933818077C0D4D16122 /* Build configuration list for PBXNativeTarget "SMPageControl" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7ED9C231833A97D0F7B865EC4303902E /* Debug */,
-				0DC276594F1070923C76D90CEBE848FE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -547,20 +639,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A2D82A2F556A2A2C726359ECAA0104C1 /* Build configuration list for PBXNativeTarget "Pods" */ = {
+		8E9537F78C99416EDAC44EC4CCE80418 /* Build configuration list for PBXNativeTarget "SMPageControl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				11C0C11AB9BB9A207A3D28A727C6E0CC /* Debug */,
-				63D2A50A503DD49F5A5701B9985F9B9E /* Release */,
+				62F142A200D1C727D662CD82675FC8C3 /* Debug */,
+				9F052B5D0BC34622DB4E9A0FFEFE6FF6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DAED7CF72A495EC518D2B7DE33421651 /* Build configuration list for PBXNativeTarget "MSPTouchableLabel" */ = {
+		9DD7CC5E11BAAFDCAB7A59B80E776E61 /* Build configuration list for PBXNativeTarget "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A994697E76C1C249661D50E65A368CBA /* Debug */,
-				A14365EF0EC32BA5AF175BDB5F57B31E /* Release */,
+				A0190B5D8D2427400A648EA879E06EEE /* Debug */,
+				29346E07BD7E21EBDBF350B7556AA51A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A022CD7B84A72AEDF90B12CFDEE2118B /* Build configuration list for PBXNativeTarget "MSPTouchableLabel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E2D8D2DB75B6A43118221A76B3CA8A6 /* Debug */,
+				F1EE6C4897A5E1B423C18D647F21CC6F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -10,7 +10,7 @@ import Foundation
 
 class EmojiKeyboardCollectionViewCell: UICollectionViewCell {
     
-    // MARK: Properties
+    // MARK: - Properties
     
     static let reuseIdentifier = "EmojiKeyboardCollectionViewCellReuseIdentifier"
     @IBOutlet weak var emojiLabel: UILabel!

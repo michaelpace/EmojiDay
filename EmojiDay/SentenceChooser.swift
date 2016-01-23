@@ -14,19 +14,19 @@ protocol SentenceChooserDelegate: NSObjectProtocol {
 
 class SentenceChooser: UIView {
     
-    // MARK: Properties
+    // MARK: - Properties
     
     var delegate: SentenceChooserDelegate?
+    let prefixes = ["Saw", "Ate", "Visited", "Made", "Talked to"]
     
-    // MARK: UIView
+    // MARK: - UIView
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let prefixes = SentenceDirectory.sharedInstance.allPrefixes
         var x = CGFloat(0)
         
-        for prefix: String in prefixes {
+        for prefix in prefixes {
             let button = UIButton(type: UIButtonType.RoundedRect)
             button.frame = CGRect(x: x, y: 16, width: 64, height: 48)
             button.setTitle(prefix, forState: UIControlState.Normal)
@@ -36,7 +36,7 @@ class SentenceChooser: UIView {
         }
     }
     
-    // MARK: Actions
+    // MARK: - Actions
     
     func buttonTapped(sender: AnyObject) {
         guard delegate != nil else {

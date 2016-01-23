@@ -9,12 +9,14 @@
 import Foundation
 import CoreData
 
+// MARK: - Data Helpers
+
 class DataHelpers {
     
     static let sharedInstance = DataHelpers()
     
     lazy var managedObjectContext: NSManagedObjectContext = {
-        // get the bundle where our managed objects (e.g., Entry) reside, and make a managed object model from all of our objects.
+        // get the bundle where our managed objects (e.g., Entry) reside, and make a managed object model (schema) from all of our objects.
         let bundle = NSBundle(forClass: Entry.self)
         guard let model = NSManagedObjectModel.mergedModelFromBundles([bundle]) else { fatalError("model not found") }
         
@@ -24,16 +26,23 @@ class DataHelpers {
         
         // make our persistent store coordinator. associate our model with it, and add a sqllite persistent store.
         let persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
-        // swiftlint:disable force_try
         try! persistentStoreCoordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil)
-        // swiftlint:enable force_try
         
-        // finally, make a new context for this persistent store and return it
-        let context = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
-        context.persistentStoreCoordinator = persistentStoreCoordinator
-        return context
+        // finally, make our managed object context and return it.
+        let managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        managedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator
+
+        return managedObjectContext
     }()
+    
+    static func save() {
+        dispatchToGlobalQueueSync(false, qualityOfServiceClass: QOS_CLASS_DEFAULT) {
+            try! sharedInstance.managedObjectContext.save()
+        }
+    }
 }
+
+// MARK: - ManagedObjectType
 
 public protocol ManagedObjectType: class {
     static var entityName: String { get }

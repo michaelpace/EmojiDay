@@ -10,12 +10,12 @@ import Foundation
 
 class EmojiKeyboardCollectionViewLayout: UICollectionViewFlowLayout {
     
-    // MARK: Properties
+    // MARK: - Properties
     
     let headerHeight = CGFloat(20)
     let headerWidth = CGFloat(200)
     
-    // MARK: Initialization
+    // MARK: - Initialization
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -32,7 +32,7 @@ class EmojiKeyboardCollectionViewLayout: UICollectionViewFlowLayout {
         minimumLineSpacing = 0
     }
     
-    // MARK: UICollectionViewFlowLayout
+    // MARK: - UICollectionViewFlowLayout
     
     override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var attributes = super.layoutAttributesForElementsInRect(rect)
@@ -79,13 +79,16 @@ class EmojiKeyboardCollectionViewLayout: UICollectionViewFlowLayout {
     }
     
     override func collectionViewContentSize() -> CGSize {
-        let contentSize = super.collectionViewContentSize()
+        // 259 columns
+        // 51.1 width
+        var contentSize = super.collectionViewContentSize()
+        contentSize.width = 295 * 51.1
         return contentSize
     }
     
-    // MARK: ()
+    // MARK: - Private implementation
     
-    func modifyHeaderAttributes(attributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+    private func modifyHeaderAttributes(attributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
         let newAttributes = attributes.copy() as! UICollectionViewLayoutAttributes  // swiftlint:disable:this force_cast
         
         newAttributes.frame = CGRect(x: attributes.frame.origin.x - (headerWidth * CGFloat(attributes.indexPath.section)),
@@ -96,7 +99,7 @@ class EmojiKeyboardCollectionViewLayout: UICollectionViewFlowLayout {
         return newAttributes
     }
     
-    func modifyCellAttributes(attributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+    private func modifyCellAttributes(attributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
         let newAttributes = attributes.copy() as! UICollectionViewLayoutAttributes  // swiftlint:disable:this force_cast
         let section = attributes.indexPath.section
         let rowInColumn = attributes.indexPath.row % 5

@@ -10,7 +10,7 @@ import Foundation
 
 class EmojiKeyboardSectionHeaderSupplementaryView: UICollectionReusableView {
     
-    // MARK: Properties
+    // MARK: - Properties
     
     static let reuseIdentifier = "EmojiKeyboardSectionHeaderSupplementaryViewReuseIdentifier"
     @IBOutlet weak var titleLabel: UILabel!

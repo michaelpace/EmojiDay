@@ -11,91 +11,94 @@ import CoreData
 
 class EntryListViewController: UITableViewController, DataManagerDelegate, SentenceChooserDelegate {
     
-    // MARK: Properties
+    // MARK: - Properties
     
-    var dataManager: DataManager?
+    var dataManager: DataManager!
     var currentEntry: Entry {
-        var entry: Entry? = dataManager?.fetchedObjects.first as? Entry
+        var entry: Entry? = dataManager.fetchedObjects.first as? Entry
         
         if entry == nil {
             entry = Entry.makeTodayEntry()
         }
         
-        if DateHelpers.dateIsToday(entry!.date!) {
+        if NSDate.dateIsToday(entry!.date!) {
             return entry!
         } else {
             // we don't have an entry for today yet. make one.
             return Entry.makeTodayEntry()
         }
     }
+    var currentEntryCell: EntryTodayTableViewCell?
     
     var currentDraftExists: Bool {
         return currentEntry.sentences?.count > 0
     }
 
-    // MARK: UIViewController
+    // MARK: - UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupDataManager()
         setupTableView()
-        setupFetchedResultsController()
     }
-    
-    // MARK: UITableViewDataSource
+
+    // MARK: - UITableViewDataSource
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        guard let _ = dataManager?.fetchedObjects.count else {
-            return 0
-        }
-        
         return 1
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let count = dataManager?.fetchedObjects.count else {
-            return 0
-        }
-        
-        return count
+        return dataManager.fetchedObjects.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(EntryTableViewCell.nibIdentifier, forIndexPath: indexPath) as! EntryTableViewCell
+        var cell: UITableViewCell
         
-        cell.entry = entryForIndexPath(indexPath)
-        cell.liveEntry = indexPath.row == 0
+        if indexPath.row == 0 {
+            let todayCell = tableView.dequeueReusableCellWithIdentifier(EntryTodayTableViewCell.nibIdentifier, forIndexPath: indexPath) as! EntryTodayTableViewCell
+            
+            todayCell.entry = entryForIndexPath(indexPath)
+            todayCell.liveEntry = indexPath.row == 0
+            currentEntryCell = todayCell
+            
+            cell = todayCell
+        } else {
+            let entryCell = tableView.dequeueReusableCellWithIdentifier(EntryTableViewCell.nibIdentifier, forIndexPath: indexPath) as! EntryTableViewCell
+            
+            entryCell.entry = entryForIndexPath(indexPath)
+            
+            cell = entryCell
+        }
 
         return cell
     }
     
-    // MARK: UITableViewDelegate
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {}
+    // MARK: - UITableViewDelegate
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let entry = entryForIndexPath(indexPath)
-        let maximumLineWidth = EntryTableViewCell.widthOfEntryComposerGivenTableView(tableView)
-        return entry.heightGivenMaximumLineWidth(maximumLineWidth) + EntryTableViewCell.heightOfCellWithNoContent
+        let maximumLineWidth = EntryTodayTableViewCell.widthOfEntryComposerGivenTableView(tableView)
+        return entry.heightGivenMaximumLineWidth(maximumLineWidth) + EntryTodayTableViewCell.heightOfCellWithNoContent
     }
     
-    // MARK: DataManagerDelegate
+    // MARK: - DataManagerDelegate
     
     func contentDidChange() {
         tableView.reloadData()
     }
     
-    // MARK: SentenceChooserDelegate
+    // MARK: - SentenceChooserDelegate
     
     func sentenceChosen(sentence: String) {
         currentEntry.addSentenceWithPrefix(sentence, emoji: nil)
-        try! DataHelpers.sharedInstance.managedObjectContext.save()
     }
     
-    // MARK: ()
+    // MARK: - Private implementation
     
     private func entryForIndexPath(indexPath: NSIndexPath) -> Entry {
-        guard let entry = dataManager?.fetchedObjects[indexPath.row] as? Entry else {
+        guard let entry = dataManager.fetchedObjects[indexPath.row] as? Entry else {
             fatalError(":(")
         }
         
@@ -103,8 +106,9 @@ class EntryListViewController: UITableViewController, DataManagerDelegate, Sente
     }
     
     private func setupTableView() {
+        tableView.registerNib(UINib(nibName: EntryTodayTableViewCell.nibIdentifier, bundle: nil), forCellReuseIdentifier: EntryTodayTableViewCell.nibIdentifier)
         tableView.registerNib(UINib(nibName: EntryTableViewCell.nibIdentifier, bundle: nil), forCellReuseIdentifier: EntryTableViewCell.nibIdentifier)
-        let sentenceChooser: SentenceChooser = NSBundle.mainBundle().loadNibNamed("SentenceChooser", owner: self, options: nil)[0] as! SentenceChooser
+        let sentenceChooser = SentenceChooser()
         sentenceChooser.delegate = self
         sentenceChooser.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 64)
         tableView.allowsSelection = false
@@ -112,7 +116,7 @@ class EntryListViewController: UITableViewController, DataManagerDelegate, Sente
         tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
-    private func setupFetchedResultsController() {
+    private func setupDataManager() {
         let fetchRequest = Entry.sortedFetchRequest
         fetchRequest.returnsObjectsAsFaults = false
         fetchRequest.fetchBatchSize = 20

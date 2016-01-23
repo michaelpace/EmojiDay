@@ -35,4 +35,36 @@ extension NSDate {
         formatter.dateFormat = format
         return formatter.stringFromDate(self)
     }
+    
+    static func dateIsToday(date: NSDate) -> Bool {
+        return NSDate.daysBetweenDate(NSDate(), andDate: date) == 0
+    }
+    
+    static func daysBetweenDate(firstDate: NSDate, andDate secondDate: NSDate) -> Int {
+        let calendar = NSCalendar.currentCalendar()
+        
+        let startOfFirstDate = calendar.startOfDayForDate(firstDate)
+        let startOfSecondDate = calendar.startOfDayForDate(secondDate)
+        let components = calendar.components(NSCalendarUnit.Day, fromDate:startOfFirstDate, toDate:startOfSecondDate, options: [])
+        
+        return components.day
+    }
+}
+
+extension UIImage {
+    class func newImageFromMaskImage(mask: UIImage, inColor color: UIColor) -> UIImage? {
+        let maskImage: CGImageRef? = mask.CGImage
+        let bounds = CGRect(x: 0, y: 0, width: mask.size.width, height: mask.size.height)
+        
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let bitmapContext = CGBitmapContextCreate(nil, Int(mask.size.width), Int(mask.size.height), 8, 0, colorSpace, CGImageAlphaInfo.PremultipliedLast.rawValue)
+        CGContextClipToMask(bitmapContext, bounds, maskImage)
+        CGContextSetFillColorWithColor(bitmapContext, color.CGColor)
+        CGContextFillRect(bitmapContext, bounds)
+        
+        if let mainViewContentBitmapcontext = CGBitmapContextCreateImage(bitmapContext) {
+            return UIImage(CGImage: mainViewContentBitmapcontext)
+        }
+        return nil
+    }
 }

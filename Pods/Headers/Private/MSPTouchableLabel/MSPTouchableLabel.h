@@ -1,1 +1,1 @@
-../../../MSPTouchableLabel/MSPTouchableLabel/MSPTouchableLabel.h
+../../../MSPTouchableLabel/Source/MSPTouchableLabel.h

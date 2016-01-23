@@ -22,12 +22,12 @@ struct EmojiKeyboardEmoji {
 
 class EmojiKeyboardValues: NSObject, EmojiKeyboardDataSource {
     
-    // MARK: Properties
+    // MARK: - Properties
     
     static let sharedInstance = EmojiKeyboardValues()
     var sections = [EmojiKeyboardSection]()
     
-    // MARK: Initialization
+    // MARK: - Initialization
     
     override init() {
         super.init()
@@ -41,7 +41,7 @@ class EmojiKeyboardValues: NSObject, EmojiKeyboardDataSource {
         parsePlistWithSections(plistSections)
     }
     
-    // MARK: ()
+    // MARK: - Private implementation
     
     private func parsePlistWithSections(plistSections: [[String: AnyObject]]) {
         for section: Dictionary in plistSections {
@@ -65,7 +65,7 @@ class EmojiKeyboardValues: NSObject, EmojiKeyboardDataSource {
         }
     }
     
-    // MARK: EmojiKeyboardDataSource
+    // MARK: - EmojiKeyboardDataSource
     
     func sectionsForEmojiKeyboard(emojiKeyboard: EmojiKeyboard) -> [EmojiKeyboardSection] {
         return sections

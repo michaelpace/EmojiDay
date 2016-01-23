@@ -8,41 +8,40 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="R8Y-Ed-aX2" customClass="EntryTableViewCell" customModule="EmojiDay" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EntryTableViewCell" rowHeight="166" id="gbb-Rx-n7q" customClass="EntryTableViewCell" customModule="EmojiDay" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="166"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="R8Y-Ed-aX2" id="c4A-aP-Lhv">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gbb-Rx-n7q" id="fBb-GH-LsP">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="165.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ytu-Kl-F6r">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kLb-Mn-mPx">
                         <rect key="frame" x="12" y="12" width="35.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2h-9L-qFt" userLabel="entry composer wrapper view">
-                        <rect key="frame" x="4" y="33" width="312" height="6.5"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IoF-Y8-GQj">
+                        <rect key="frame" x="12" y="33" width="296" height="120.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ytu-Kl-F6r" firstAttribute="top" secondItem="c4A-aP-Lhv" secondAttribute="topMargin" constant="4" id="4VI-XH-J3C"/>
-                    <constraint firstItem="d2h-9L-qFt" firstAttribute="top" secondItem="ytu-Kl-F6r" secondAttribute="bottom" constant="4" id="D8V-GD-Y4F"/>
-                    <constraint firstItem="d2h-9L-qFt" firstAttribute="leading" secondItem="c4A-aP-Lhv" secondAttribute="leading" constant="4" id="ZhB-EQ-BMk"/>
-                    <constraint firstAttribute="bottom" secondItem="d2h-9L-qFt" secondAttribute="bottom" constant="4" id="gNo-wY-QTX"/>
-                    <constraint firstAttribute="trailing" secondItem="d2h-9L-qFt" secondAttribute="trailing" constant="4" id="pys-xp-lWe"/>
-                    <constraint firstItem="ytu-Kl-F6r" firstAttribute="leading" secondItem="c4A-aP-Lhv" secondAttribute="leadingMargin" constant="4" id="q84-Gu-ORp"/>
+                    <constraint firstItem="IoF-Y8-GQj" firstAttribute="leading" secondItem="fBb-GH-LsP" secondAttribute="leadingMargin" constant="4" id="3fB-ml-ide"/>
+                    <constraint firstItem="IoF-Y8-GQj" firstAttribute="top" secondItem="kLb-Mn-mPx" secondAttribute="bottom" constant="4" id="Kz1-W6-gl3"/>
+                    <constraint firstItem="kLb-Mn-mPx" firstAttribute="top" secondItem="fBb-GH-LsP" secondAttribute="topMargin" constant="4" id="ZrT-hU-CUp"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="IoF-Y8-GQj" secondAttribute="bottom" constant="4" id="uYo-TI-3Q3"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="IoF-Y8-GQj" secondAttribute="trailing" constant="4" id="vqE-S5-vhV"/>
+                    <constraint firstItem="kLb-Mn-mPx" firstAttribute="leading" secondItem="fBb-GH-LsP" secondAttribute="leadingMargin" constant="4" id="wBU-PQ-eJv"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="dateLabel" destination="ytu-Kl-F6r" id="pbA-UC-dvR"/>
-                <outlet property="entryComposerWrapperView" destination="d2h-9L-qFt" id="Owe-he-rn7"/>
-                <outlet property="entryComposerWrapperViewBottomConstraint" destination="gNo-wY-QTX" id="6QU-3l-x0k"/>
-                <outlet property="entryComposerWrapperViewLeadingConstraint" destination="ZhB-EQ-BMk" id="LAa-Fv-MqD"/>
-                <outlet property="entryComposerWrapperViewTrailingConstraint" destination="pys-xp-lWe" id="DVX-O7-XaE"/>
+                <outlet property="dateLabel" destination="kLb-Mn-mPx" id="Trr-dB-G4n"/>
+                <outlet property="entryLabel" destination="IoF-Y8-GQj" id="9KN-vO-2nR"/>
             </connections>
-            <point key="canvasLocation" x="4" y="374"/>
+            <point key="canvasLocation" x="21" y="492"/>
         </tableViewCell>
     </objects>
 </document>

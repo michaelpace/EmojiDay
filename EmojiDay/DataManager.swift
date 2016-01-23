@@ -15,7 +15,7 @@ public protocol DataManagerDelegate {
 
 class DataManager: NSObject, NSFetchedResultsControllerDelegate {
     
-    // MARK: Properties
+    // MARK: - Properties
     
     var fetchedResultsController: NSFetchedResultsController
     var delegate: DataManagerDelegate
@@ -27,7 +27,7 @@ class DataManager: NSObject, NSFetchedResultsControllerDelegate {
         return content
     }
     
-    // MARK: Initializers
+    // MARK: - Initializers
     
     init(fetchRequest: NSFetchRequest, managedObjectContext: NSManagedObjectContext, delegate: DataManagerDelegate) {
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
@@ -44,7 +44,7 @@ class DataManager: NSObject, NSFetchedResultsControllerDelegate {
         }
     }
     
-    // MARK: NSFetchedResultsControllerDelegate
+    // MARK: - NSFetchedResultsControllerDelegate
     
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         delegate.contentDidChange()

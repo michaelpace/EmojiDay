@@ -10,27 +10,25 @@ import Foundation
 
 class EntryComposer: UIView, MSPTouchableLabelDataSource, MSPTouchableLabelDelegate, EmojiKeyboardDelegate {
     
-    // MARK: Properties
+    // MARK: - Public properties
     
     var entry: Entry? {
         didSet {
+            sentences = entry?.sentences?.array as? [Sentence]
             touchableLabel.setNeedsDisplay()
-            if (currentSentence != entry?.sentences?.lastObject as? Sentence) {
-                currentSentence = (entry?.sentences?.lastObject)! as? Sentence
-            }
         }
     }
-    @IBOutlet weak var touchableLabel: MSPTouchableLabel!
     var liveEntry: Bool = false
-    var emojiKeyboard: EmojiKeyboard?
-    let hiddenTextView = UITextView()
-    var currentSentence: Sentence? {
-        didSet {
-            hiddenTextView.becomeFirstResponder()
-        }
-    }
+
+    // MARK: - Private properties
+
+    private var sentences: [Sentence]?
+    private let hiddenTextView = UITextView()
+    private var emojiKeyboard: EmojiKeyboard!
+    private var selectedSentence: Sentence?
+    @IBOutlet private weak var touchableLabel: MSPTouchableLabel!
     
-    // MARK: UIView
+    // MARK: - UIView
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,43 +37,76 @@ class EntryComposer: UIView, MSPTouchableLabelDataSource, MSPTouchableLabelDeleg
         touchableLabel.delegate = self
         
         emojiKeyboard = NSBundle.mainBundle().loadNibNamed("EmojiKeyboard", owner: self, options: nil).first as? EmojiKeyboard
-        emojiKeyboard!.delegate = self
-        emojiKeyboard!.backgroundColor = UIColor(colorLiteralRed: 248.0/255.0, green: 248.0/255.0, blue: 248.0/255.0, alpha: 1.0)
-        emojiKeyboard!.accentColor = accentColor
+        emojiKeyboard.delegate = self
+        emojiKeyboard.backgroundColor = UIColor(colorLiteralRed: 248.0/255.0, green: 248.0/255.0, blue: 248.0/255.0, alpha: 1.0)
+        emojiKeyboard.accentColor = ColorScheme.AccentColor.color()
+        emojiKeyboard.unselectedColor = ColorScheme.UnselectedColor.color()
+        emojiKeyboard.showRecentSection = false
         hiddenTextView.inputView = emojiKeyboard
         hiddenTextView.hidden = true
         addSubview(hiddenTextView)
     }
     
-    // MARK: MSPTouchableLabelDataSource
+    // MARK: - MSPTouchableLabelDataSource
     
     func textForTouchableLabel(touchableLabel: MSPTouchableLabel!) -> [AnyObject]! {
-        guard liveEntry else {
-            return [(entry?.renderedText)!]
+        var outputText = [String]()
+        
+        guard sentences?.count > 0 else {
+            return outputText
         }
         
-        var outputText = [String]()
-        let _ = entry?.sentences?.array.map { outputText.append($0.renderedText) }
+        for i in 0..<(sentences?.count)! {
+            let sentence = sentences![i]
+            outputText.append(sentence.renderedText)
+        }
+        
         return outputText
     }
     
     func attributesForTouchableLabel(touchableLabel: MSPTouchableLabel!, atIndex index: Int) -> [NSObject : AnyObject]! {
-        return entryFontAttributes
+        var result = entryFontAttributes
+        if let s = sentences {
+            let sentenceAtIndexInQuestion = s[index]
+            if sentenceAtIndexInQuestion == selectedSentence {
+                result[NSBackgroundColorAttributeName] = UIColor.yellowColor()
+            }
+        }
+
+        return result
     }
     
-    // MARK: MSPTouchableLabelDelegate
+    // MARK: - MSPTouchableLabelDelegate
     
     func touchableLabel(touchableLabel: MSPTouchableLabel!, touchesDidEndAtIndex index: Int) {
-        currentSentence = entry?.sentences![index] as? Sentence
+        hiddenTextView.becomeFirstResponder()
+        selectedSentence = sentences![index]
     }
     
-    // MARK: EmojiKeyboardDelegate
+    // MARK: - EmojiKeyboardDelegate
     
     func emojiKeyboard(emojiKeyboard: EmojiKeyboard, didSelectButtonWithText text: String) {
-        currentSentence?.emoji = text
-        try! DataHelpers.sharedInstance.managedObjectContext.save()
+        selectedSentence?.addEmoji(text)
+        touchableLabel.setNeedsDisplay()
     }
     
-    func emojiKeyboardBackspaceTapped(emojiKeyboard: EmojiKeyboard) {}
+    func emojiKeyboardBackspaceTapped(emojiKeyboard: EmojiKeyboard) {
+        if selectedSentence?.emojiState == EmojiBlankState.Blank {
+            entry?.deleteSentence(selectedSentence!)
+            selectedSentence = sentences![sentences!.count-1]
+        } else {
+            selectedSentence?.deleteLastEmoji()
+        }
+        touchableLabel.setNeedsDisplay()
+    }
+    
+    // MARK: - Public API
+    
+    func selectLastSentence() {
+        if sentences?.count > 0 {
+            selectedSentence = sentences![sentences!.count-1]
+            touchableLabel.setNeedsDisplay()
+        }
+    }
     
 }
