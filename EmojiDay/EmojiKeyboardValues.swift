@@ -46,19 +46,28 @@ class EmojiKeyboardValues: NSObject, EmojiKeyboardDataSource {
     private func parsePlistWithSections(plistSections: [[String: AnyObject]]) {
         for section: Dictionary in plistSections {
             
-            let emojisArray: [[String: AnyObject]] = section["emojis"] as! [[String: AnyObject]]
+            guard let emojisArray = section["emojis"] as? [[String: AnyObject]] else {
+                continue
+            }
+
             var emojis = [EmojiKeyboardEmoji]()
             
             for emojiDict: Dictionary in emojisArray {
-                let value = emojiDict["emoji"] as! String
-                let variations = emojiDict["variations"] as! [String]
+                guard let
+                    value = emojiDict["emoji"] as? String,
+                    variations = emojiDict["variations"] as? [String] else {
+                    continue
+                }
                 
                 let emojiKeyboardEmoji = EmojiKeyboardEmoji(value: value, variations: variations)
                 emojis.append(emojiKeyboardEmoji)
             }
             
-            let title: String = section["title"] as! String
-            let icon = UIImage(named: title)!
+            guard let
+                title = section["title"] as? String,
+                icon = UIImage(named: title) else {
+                continue
+            }
             
             let emojiKeyboardSection = EmojiKeyboardSection(title: title, emojis: emojis, icon: icon, selectedIcon: icon)
             sections.append(emojiKeyboardSection)

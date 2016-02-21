@@ -39,14 +39,14 @@ class SentenceChooser: UIView {
     // MARK: - Actions
     
     func buttonTapped(sender: AnyObject) {
-        guard delegate != nil else {
-            return
+        guard delegate != nil,
+            let button = sender as? UIButton else {
+                return
         }
         
-        let button = sender as! UIButton
-        let sentence = button.titleForState(UIControlState.Normal)!
-        
-        delegate?.sentenceChosen(sentence)
+        if let sentence = button.titleForState(UIControlState.Normal) {
+            delegate?.sentenceChosen(sentence)
+        }
     }
     
 }

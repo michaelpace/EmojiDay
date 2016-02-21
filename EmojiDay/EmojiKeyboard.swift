@@ -154,9 +154,11 @@ class EmojiKeyboard: UIView, UICollectionViewDataSource, UICollectionViewDelegat
     
     private func sizeForKeyboardButtons() -> CGSize {
         // TODO: enforce minimum button size per ios usability guidelines
-        
+        guard let layout = collectionView.collectionViewLayout as? EmojiKeyboardCollectionViewLayout  else {
+            return CGSizeZero
+        }
+
         let collectionViewHeight = collectionView.bounds.height
-        let layout = collectionView.collectionViewLayout as! EmojiKeyboardCollectionViewLayout  // swiftlint:disable:this force_cast
         let contentViewHeight = collectionViewHeight - layout.headerHeight
         let cellSizeHeightAndWidth = contentViewHeight / CGFloat(numberOfKeysPerColumn)
         

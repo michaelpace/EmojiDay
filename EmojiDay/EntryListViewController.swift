@@ -9,22 +9,18 @@
 import Foundation
 import CoreData
 
-class EntryListViewController: UITableViewController, DataManagerDelegate, SentenceChooserDelegate {
+class EntryListViewController: UITableViewController, DataSourceDelegate, SentenceChooserDelegate {
     
     // MARK: - Properties
     
-    var dataManager: DataManager!
+    var dataSource: DataSource!
     var currentEntry: Entry {
-        var entry: Entry? = dataManager.fetchedObjects.first as? Entry
-        
-        if entry == nil {
-            entry = Entry.makeTodayEntry()
-        }
-        
-        if NSDate.dateIsToday(entry!.date!) {
-            return entry!
+        let entry = dataSource.fetchedObjects.first as? Entry ?? Entry.makeTodayEntry()
+
+        if let date = entry.date {
+            return NSDate.dateIsToday(date) ? entry : Entry.makeTodayEntry()
         } else {
-            // we don't have an entry for today yet. make one.
+            // execution shouldn't ever enter this block.
             return Entry.makeTodayEntry()
         }
     }
@@ -39,7 +35,7 @@ class EntryListViewController: UITableViewController, DataManagerDelegate, Sente
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupDataManager()
+        setupDataSource()
         setupTableView()
     }
 
@@ -50,22 +46,27 @@ class EntryListViewController: UITableViewController, DataManagerDelegate, Sente
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataManager.fetchedObjects.count
+        return dataSource.fetchedObjects.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: UITableViewCell
         
         if indexPath.row == 0 {
-            let todayCell = tableView.dequeueReusableCellWithIdentifier(EntryTodayTableViewCell.nibIdentifier, forIndexPath: indexPath) as! EntryTodayTableViewCell
+            guard let todayCell = tableView.dequeueReusableCellWithIdentifier(EntryTodayTableViewCell.nibIdentifier,
+                forIndexPath: indexPath) as? EntryTodayTableViewCell else {
+                    fatalError("Error dequeueing EntryTodayTableViewCell")
+            }
             
             todayCell.entry = entryForIndexPath(indexPath)
-            todayCell.liveEntry = indexPath.row == 0
             currentEntryCell = todayCell
             
             cell = todayCell
         } else {
-            let entryCell = tableView.dequeueReusableCellWithIdentifier(EntryTableViewCell.nibIdentifier, forIndexPath: indexPath) as! EntryTableViewCell
+            guard let entryCell = tableView.dequeueReusableCellWithIdentifier(EntryTableViewCell.nibIdentifier,
+                forIndexPath: indexPath) as? EntryTableViewCell else {
+                    fatalError("Error dequeueing EntryTableViewCell")
+            }
             
             entryCell.entry = entryForIndexPath(indexPath)
             
@@ -83,7 +84,7 @@ class EntryListViewController: UITableViewController, DataManagerDelegate, Sente
         return entry.heightGivenMaximumLineWidth(maximumLineWidth) + EntryTodayTableViewCell.heightOfCellWithNoContent
     }
     
-    // MARK: - DataManagerDelegate
+    // MARK: - DataSourceDelegate
     
     func contentDidChange() {
         tableView.reloadData()
@@ -93,12 +94,13 @@ class EntryListViewController: UITableViewController, DataManagerDelegate, Sente
     
     func sentenceChosen(sentence: String) {
         currentEntry.addSentenceWithPrefix(sentence, emoji: nil)
+        currentEntryCell?.selectLastSentence()
     }
     
     // MARK: - Private implementation
     
     private func entryForIndexPath(indexPath: NSIndexPath) -> Entry {
-        guard let entry = dataManager.fetchedObjects[indexPath.row] as? Entry else {
+        guard let entry = dataSource.fetchedObjects[indexPath.row] as? Entry else {
             fatalError(":(")
         }
         
@@ -116,10 +118,10 @@ class EntryListViewController: UITableViewController, DataManagerDelegate, Sente
         tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
-    private func setupDataManager() {
+    private func setupDataSource() {
         let fetchRequest = Entry.sortedFetchRequest
         fetchRequest.returnsObjectsAsFaults = false
         fetchRequest.fetchBatchSize = 20
-        dataManager = DataManager(fetchRequest: fetchRequest, managedObjectContext: DataHelpers.sharedInstance.managedObjectContext, delegate: self)
+        dataSource = DataSource(fetchRequest: fetchRequest, managedObjectContext: DataManager.sharedInstance.managedObjectContext, delegate: self)
     }
 }

@@ -35,27 +35,38 @@ class EmojiKeyboardCollectionViewLayout: UICollectionViewFlowLayout {
     // MARK: - UICollectionViewFlowLayout
     
     override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        var attributes = super.layoutAttributesForElementsInRect(rect)
-        let section = CGFloat((attributes!.last?.indexPath.section)!)
-        let newRect = CGRect(x: (collectionView?.contentOffset.x)! + (headerWidth * section), y: rect.origin.y, width: rect.size.width * 1.5, height: rect.size.height)  // TODO: why do i have to use the contentOffset.x instead of rect.origin.x, and why do i have to mulitply the rect width by 1.5? (try removing these to see the bugginess). this is really dirty. find a way to fix it.
-        attributes = super.layoutAttributesForElementsInRect(newRect)
+        guard let attributes = super.layoutAttributesForElementsInRect(rect),
+            section = attributes.last?.indexPath.section,
+            contentOffset = collectionView?.contentOffset else {
+                return nil
+        }
+
+        let sectionFloat = CGFloat(section)
+        let newRect = CGRect(x: contentOffset.x + (headerWidth * sectionFloat),
+            y: rect.origin.y,
+            width: rect.size.width * 1.5,
+            height: rect.size.height)  // TODO: why do i have to use the contentOffset.x instead of rect.origin.x, and why do i have to mulitply the rect width by 1.5? (try removing these to see the bugginess). this is really dirty. find a way to fix it.
+
+        guard let newlyLaidOutAttributes = super.layoutAttributesForElementsInRect(newRect) else {
+            return nil
+        }
         
-        var newAttributes = [UICollectionViewLayoutAttributes]()
-        for attribute in attributes! {
+        var finalAttributes = [UICollectionViewLayoutAttributes]()
+        for attribute in newlyLaidOutAttributes {
             // per http://stackoverflow.com/a/13389461
             if attribute.frame.origin.x + attribute.frame.size.width > collectionViewContentSize().width || attribute.frame.origin.y > collectionViewContentSize().height {
                 continue
             }
             if attribute.representedElementCategory == UICollectionElementCategory.SupplementaryView {
-                newAttributes.append(modifyHeaderAttributes(attribute))
+                finalAttributes.append(modifyHeaderAttributes(attribute))
             } else if attribute.representedElementCategory == UICollectionElementCategory.Cell {
-                newAttributes.append(modifyCellAttributes(attribute))
+                finalAttributes.append(modifyCellAttributes(attribute))
             } else {
-                newAttributes.append(attribute)
+                finalAttributes.append(attribute)
             }
         }
         
-        return newAttributes
+        return finalAttributes
     }
     
     override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
@@ -69,7 +80,10 @@ class EmojiKeyboardCollectionViewLayout: UICollectionViewFlowLayout {
     }
     
     override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
-        var attributes = super.layoutAttributesForItemAtIndexPath(indexPath)!
+        guard var attributes = super.layoutAttributesForItemAtIndexPath(indexPath) else {
+            return nil
+        }
+        
         attributes = modifyCellAttributes(attributes)
         return attributes
     }
@@ -89,7 +103,9 @@ class EmojiKeyboardCollectionViewLayout: UICollectionViewFlowLayout {
     // MARK: - Private implementation
     
     private func modifyHeaderAttributes(attributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-        let newAttributes = attributes.copy() as! UICollectionViewLayoutAttributes  // swiftlint:disable:this force_cast
+        guard let newAttributes = attributes.copy() as? UICollectionViewLayoutAttributes else {
+            return attributes
+        }
         
         newAttributes.frame = CGRect(x: attributes.frame.origin.x - (headerWidth * CGFloat(attributes.indexPath.section)),
             y: 0,
@@ -100,7 +116,10 @@ class EmojiKeyboardCollectionViewLayout: UICollectionViewFlowLayout {
     }
     
     private func modifyCellAttributes(attributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-        let newAttributes = attributes.copy() as! UICollectionViewLayoutAttributes  // swiftlint:disable:this force_cast
+        guard let newAttributes = attributes.copy() as? UICollectionViewLayoutAttributes else {
+            return attributes
+        }
+
         let section = attributes.indexPath.section
         let rowInColumn = attributes.indexPath.row % 5
         

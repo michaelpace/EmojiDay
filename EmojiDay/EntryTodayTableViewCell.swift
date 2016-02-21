@@ -16,26 +16,22 @@ class EntryTodayTableViewCell: UITableViewCell, TableViewCellData {
     
     var entry: Entry? {
         didSet {
-            let date = (entry?.date?.prettyFormatted)!
+            guard let date = entry?.date?.prettyFormatted else {
+                return
+            }
             dateLabel.text = "Today | \(date)"
             
             entryComposer.entry = entry
         }
     }
-    
-    var liveEntry: Bool = false {
-        didSet {
-            entryComposer.liveEntry = liveEntry
-        }
-    }
-    
+
     class var heightOfCellWithNoContent: CGFloat {
         return entryComposerWrapperViewConstraintConstant * 2
     }
 
     // MARK: - Private properties
 
-    private var entryComposer: EntryComposer = NSBundle.mainBundle().loadNibNamed("EntryComposer", owner: nil, options: nil).first as! EntryComposer
+    private var entryComposer: EntryComposer!
     @IBOutlet private weak var entryComposerWrapperView: UIView!
     @IBOutlet private weak var entryComposerWrapperViewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet private weak var entryComposerWrapperViewTrailingConstraint: NSLayoutConstraint!
@@ -46,13 +42,19 @@ class EntryTodayTableViewCell: UITableViewCell, TableViewCellData {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
+        guard let entryComposer = NSBundle.mainBundle().loadNibNamed("EntryComposer", owner: nil, options: nil).first as? EntryComposer else {
+            fatalError()
+        }
+
         entryComposerWrapperViewLeadingConstraint.constant = entryComposerWrapperViewConstraintConstant
         entryComposerWrapperViewTrailingConstraint.constant = entryComposerWrapperViewConstraintConstant
         entryComposerWrapperViewBottomConstraint.constant = entryComposerWrapperViewConstraintConstant
         
         entryComposer.frame = entryComposerWrapperView.bounds
         entryComposerWrapperView.addSubview(entryComposer)
+
+        self.entryComposer = entryComposer
     }
     
     // MARK: - TableViewCellData
@@ -65,6 +67,10 @@ class EntryTodayTableViewCell: UITableViewCell, TableViewCellData {
     
     class func widthOfEntryComposerGivenTableView(tableView: UITableView) -> CGFloat {
         return tableView.bounds.width - (entryComposerWrapperViewConstraintConstant * 2)
+    }
+
+    func selectLastSentence() {
+        entryComposer.selectLastSentence()
     }
 
 }

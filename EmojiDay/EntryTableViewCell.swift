@@ -17,10 +17,13 @@ class EntryTableViewCell: UITableViewCell, TableViewCellData {
     
     var entry: Entry? {
         didSet {
-            let daysAgo = NSDate.daysBetweenDate((entry?.date)!, andDate: NSDate())
+            guard let date = entry?.date else {
+                return
+            }
+            let daysAgo = NSDate.daysBetweenDate(date, andDate: NSDate())
             let sForDaysAgo = daysAgo == 1 ? "" : "s"
-            let date = (entry?.date?.prettyFormatted)!
-            dateLabel.text = "\(daysAgo) day\(sForDaysAgo) ago | \(date)"
+            let formattedDate = date.prettyFormatted
+            dateLabel.text = "\(daysAgo) day\(sForDaysAgo) ago | \(formattedDate)"
             
             entryLabel.text = entry?.renderedText
         }

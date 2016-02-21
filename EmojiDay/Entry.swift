@@ -16,11 +16,11 @@ class Entry: NSManagedObject, ManagedObjectType {
     
     var renderedText: String {
         var outputString = ""
-        guard let sentencesToRender = sentences?.array else {
+        guard let sentences = sentences?.array else {
             return outputString
         }
         
-        for value in sentencesToRender {
+        for value in sentences {
             let sentence = value as? Sentence
             if sentence != nil && sentence?.emojiState != .Blank {
                 outputString.appendContentsOf(sentence!.renderedText)
@@ -43,7 +43,7 @@ class Entry: NSManagedObject, ManagedObjectType {
     // MARK: - Public API
     
     static func makeTodayEntry() -> Entry {
-        guard let entry = NSEntityDescription.insertNewObjectForEntityForName(Entry.entityName, inManagedObjectContext: DataHelpers.sharedInstance.managedObjectContext) as? Entry else {
+        guard let entry = NSEntityDescription.insertNewObjectForEntityForName(Entry.entityName, inManagedObjectContext: DataManager.sharedInstance.managedObjectContext) as? Entry else {
             fatalError(":(")
         }
         entry.date = NSDate()
@@ -55,21 +55,24 @@ class Entry: NSManagedObject, ManagedObjectType {
         if let lastSentence = sentences?.lastObject as? Sentence {
             if lastSentence.emojiState == EmojiBlankState.Blank && NSDate.dateIsToday(date!) {
                 lastSentence.prefix = prefix
-                lastSentence.addEmoji(emoji)
-                
+                lastSentence.addEmoji(emoji, save: true)
                 return
             }
         }
         
-        let mutableSentences = sentences?.mutableCopy() as! NSMutableOrderedSet
-        let newSentence = NSEntityDescription.insertNewObjectForEntityForName(Sentence.entityName, inManagedObjectContext: DataHelpers.sharedInstance.managedObjectContext) as! Sentence
-        newSentence.prefix = prefix
-        newSentence.addEmoji(emoji)
-        newSentence.entry = self
-        mutableSentences.addObject(newSentence)
-        sentences = mutableSentences.copy() as? NSOrderedSet
+        if let
+            mutableSentences = sentences?.mutableCopy() as? NSMutableOrderedSet,
+            newSentence = NSEntityDescription.insertNewObjectForEntityForName(Sentence.entityName,
+                inManagedObjectContext: DataManager.sharedInstance.managedObjectContext) as? Sentence {
 
-        DataHelpers.save()
+            newSentence.prefix = prefix
+            newSentence.addEmoji(emoji, save: false)
+            newSentence.entry = self
+            mutableSentences.addObject(newSentence)
+            sentences = mutableSentences.copy() as? NSOrderedSet
+
+            DataManager.save()
+        }
     }
     
     func deleteSentence(sentenceToDelete: Sentence) {
@@ -80,9 +83,9 @@ class Entry: NSManagedObject, ManagedObjectType {
         let mutableSentences = sentences?.mutableCopy() as? NSMutableOrderedSet
         mutableSentences?.removeObject(sentenceToDelete)
         sentences = mutableSentences
-        DataHelpers.sharedInstance.managedObjectContext.deleteObject(sentenceToDelete)
+        DataManager.sharedInstance.managedObjectContext.deleteObject(sentenceToDelete)
 
-        DataHelpers.save()
+        DataManager.save()
     }
     
     func moveSentenceAtIndex(startingIndex: Int, var toIndex endingIndex: Int) {
@@ -98,13 +101,13 @@ class Entry: NSManagedObject, ManagedObjectType {
         
         sentences = mutableSentences
 
-        DataHelpers.save()
+        DataManager.save()
     }
     
     func heightGivenMaximumLineWidth(maximumLineWidth: CGFloat) -> CGFloat {
         let result = MSPTouchableLabel.sizeForTouchableLabelGivenText(
             sentences?.map{ $0.renderedText },
-            withAttributes: [[String: AnyObject]](count: (sentences?.count == nil ? 0 : (sentences?.count)!), repeatedValue: entryFontAttributes),
+            withAttributes: [[String: AnyObject]](count: sentences?.count ?? 0, repeatedValue: entryFontAttributes),
             inRect: CGRect(
                 origin: CGPointZero,
                 size: CGSize(

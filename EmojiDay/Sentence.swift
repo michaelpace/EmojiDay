@@ -65,17 +65,19 @@ class Sentence: NSManagedObject, ManagedObjectType {
 
     // MARK: - Public API
     
-    func addEmoji(emojiToAdd: String?) {
+    func addEmoji(emojiToAdd: String?, save: Bool) {
         switch nextIndex {
         case 0: emoji1 = emojiToAdd
         case 1: emoji2 = emojiToAdd
         default: emoji3 = emojiToAdd
         }
 
-        DataHelpers.save()
+        if save {
+            DataManager.save()
+        }
     }
     
-    func deleteLastEmoji() {
+    func deleteLastEmojiSave(save: Bool) {
         switch nextIndex {
         case 1: emoji1 = nil
         case 2: emoji2 = nil
@@ -83,7 +85,9 @@ class Sentence: NSManagedObject, ManagedObjectType {
         default: break
         }
 
-        DataHelpers.save()
+        if save {
+            DataManager.save()
+        }
     }
 
 }

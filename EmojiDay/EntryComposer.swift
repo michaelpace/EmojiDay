@@ -12,17 +12,15 @@ class EntryComposer: UIView, MSPTouchableLabelDataSource, MSPTouchableLabelDeleg
     
     // MARK: - Public properties
     
-    var entry: Entry? {
-        didSet {
-            sentences = entry?.sentences?.array as? [Sentence]
-            touchableLabel.setNeedsDisplay()
-        }
-    }
-    var liveEntry: Bool = false
+    var entry: Entry?
 
     // MARK: - Private properties
 
-    private var sentences: [Sentence]?
+    private var sentences: [Sentence]? {
+        get {
+            return entry?.sentences?.array as? [Sentence]
+        }
+    }
     private let hiddenTextView = UITextView()
     private var emojiKeyboard: EmojiKeyboard!
     private var selectedSentence: Sentence?
@@ -52,12 +50,12 @@ class EntryComposer: UIView, MSPTouchableLabelDataSource, MSPTouchableLabelDeleg
     func textForTouchableLabel(touchableLabel: MSPTouchableLabel!) -> [AnyObject]! {
         var outputText = [String]()
         
-        guard sentences?.count > 0 else {
+        guard let sentences = sentences where sentences.count > 0 else {
             return outputText
         }
-        
-        for i in 0..<(sentences?.count)! {
-            let sentence = sentences![i]
+
+        for i in 0..<sentences.count {
+            let sentence = sentences[i]
             outputText.append(sentence.renderedText)
         }
         
@@ -79,34 +77,54 @@ class EntryComposer: UIView, MSPTouchableLabelDataSource, MSPTouchableLabelDeleg
     // MARK: - MSPTouchableLabelDelegate
     
     func touchableLabel(touchableLabel: MSPTouchableLabel!, touchesDidEndAtIndex index: Int) {
-        hiddenTextView.becomeFirstResponder()
+        showKeyboard()
         selectedSentence = sentences![index]
     }
     
     // MARK: - EmojiKeyboardDelegate
     
     func emojiKeyboard(emojiKeyboard: EmojiKeyboard, didSelectButtonWithText text: String) {
-        selectedSentence?.addEmoji(text)
+        selectedSentence?.addEmoji(text, save: true)
         touchableLabel.setNeedsDisplay()
     }
     
     func emojiKeyboardBackspaceTapped(emojiKeyboard: EmojiKeyboard) {
-        if selectedSentence?.emojiState == EmojiBlankState.Blank {
-            entry?.deleteSentence(selectedSentence!)
-            selectedSentence = sentences![sentences!.count-1]
-        } else {
-            selectedSentence?.deleteLastEmoji()
+        guard let
+            selectedSentence = selectedSentence,
+            sentences = sentences where sentences.count > 0 else {
+                return
         }
+
+        if selectedSentence.emojiState == .Blank {
+            entry?.deleteSentence(selectedSentence)
+            self.selectedSentence = sentences[sentences.count-1]
+        } else {
+            selectedSentence.deleteLastEmojiSave(true)
+        }
+
         touchableLabel.setNeedsDisplay()
     }
     
     // MARK: - Public API
     
     func selectLastSentence() {
-        if sentences?.count > 0 {
-            selectedSentence = sentences![sentences!.count-1]
-            touchableLabel.setNeedsDisplay()
+        guard let sentences = sentences where sentences.count > 0 else {
+            return
         }
+
+        selectedSentence = sentences[sentences.count-1]
+        touchableLabel.setNeedsDisplay()
+        showKeyboard()
+    }
+
+    // MARK: - Private implementation
+
+    private func showKeyboard() {
+        hiddenTextView.becomeFirstResponder()
+    }
+
+    private func hideKeyboard() {
+        hiddenTextView.resignFirstResponder()
     }
     
 }
