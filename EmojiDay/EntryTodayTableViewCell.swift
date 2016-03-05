@@ -11,7 +11,7 @@ import Foundation
 private let entryComposerWrapperViewBottomConstraintConstant: CGFloat = 40
 private let entryComposerWrapperViewLeftRightConstraintConstant: CGFloat = 16
 
-class EntryTodayTableViewCell: UITableViewCell, TableViewCellData {
+class EntryTodayTableViewCell: UITableViewCell {
     
     // MARK: - Public properties
     
@@ -57,21 +57,29 @@ class EntryTodayTableViewCell: UITableViewCell, TableViewCellData {
 
         self.entryComposer = entryComposer
     }
-    
-    // MARK: - TableViewCellData
-    
+}
+
+// MARK: - TableViewCellData
+
+extension EntryTodayTableViewCell: TableViewCellData {
     static var nibIdentifier: String {
         return "EntryTodayTableViewCell"
     }
-    
-    // MARK: - Public API
-    
+}
+
+// MARK: - Public API
+
+extension EntryTodayTableViewCell {
     class func widthOfEntryComposerGivenTableView(tableView: UITableView) -> CGFloat {
         return tableView.bounds.width - (entryComposerWrapperViewLeftRightConstraintConstant * 2)
     }
 
     func selectLastSentence() {
         entryComposer.selectLastSentence()
+        entryComposer.showKeyboard()
     }
 
+    func hideKeyboard() {
+        entryComposer.hideKeyboard()
+    }
 }

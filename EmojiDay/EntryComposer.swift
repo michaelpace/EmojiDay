@@ -8,7 +8,7 @@
 
 import Foundation
 
-class EntryComposer: UIView, MSPTouchableLabelDataSource, MSPTouchableLabelDelegate, EmojiKeyboardDelegate {
+class EntryComposer: UIView {
     
     // MARK: - Public properties
     
@@ -23,7 +23,12 @@ class EntryComposer: UIView, MSPTouchableLabelDataSource, MSPTouchableLabelDeleg
     }
     private let hiddenTextView = UITextView()
     private var emojiKeyboard: EmojiKeyboard!
-    private var selectedSentence: Sentence?
+    private var selectedSentence: Sentence? {
+        didSet {
+            touchableLabel.setNeedsDisplay()
+        }
+    }
+    private var shouldHideKeyboard = true
     @IBOutlet private weak var touchableLabel: MSPTouchableLabel!
     
     // MARK: - UIView
@@ -42,11 +47,14 @@ class EntryComposer: UIView, MSPTouchableLabelDataSource, MSPTouchableLabelDeleg
         emojiKeyboard.showRecentSection = false
         hiddenTextView.inputView = emojiKeyboard
         hiddenTextView.hidden = true
+        hiddenTextView.delegate = self
         addSubview(hiddenTextView)
     }
-    
-    // MARK: - MSPTouchableLabelDataSource
-    
+}
+
+// MARK: - MSPTouchableLabelDataSource
+
+extension EntryComposer: MSPTouchableLabelDataSource {
     func textForTouchableLabel(touchableLabel: MSPTouchableLabel!) -> [AnyObject]! {
         var outputText = [String]()
         
@@ -73,20 +81,25 @@ class EntryComposer: UIView, MSPTouchableLabelDataSource, MSPTouchableLabelDeleg
 
         return result
     }
-    
-    // MARK: - MSPTouchableLabelDelegate
-    
+}
+
+// MARK: - MSPTouchableLabelDelegate
+
+extension EntryComposer: MSPTouchableLabelDelegate {
     func touchableLabel(touchableLabel: MSPTouchableLabel!, touchesDidEndAtIndex index: Int) {
         guard index >= 0 && index < sentences?.count else {
+            hideKeyboard()
             return
         }
 
         showKeyboard()
         selectedSentence = sentences?[index]
     }
+}
     
-    // MARK: - EmojiKeyboardDelegate
-    
+// MARK: - EmojiKeyboardDelegate
+
+extension EntryComposer: EmojiKeyboardDelegate {
     func emojiKeyboard(emojiKeyboard: EmojiKeyboard, didSelectButtonWithText text: String) {
         selectedSentence?.addEmoji(text, save: true)
         touchableLabel.setNeedsDisplay()
@@ -107,10 +120,25 @@ class EntryComposer: UIView, MSPTouchableLabelDataSource, MSPTouchableLabelDeleg
         }
 
         touchableLabel.setNeedsDisplay()
+        selectLastSentence()
     }
-    
-    // MARK: - Public API
-    
+}
+
+// MARK: - UITextViewDelegate
+
+extension EntryComposer: UITextViewDelegate {
+    func textViewShouldBeginEditing(textView: UITextView) -> Bool {
+        return true
+    }
+
+    func textViewShouldEndEditing(textView: UITextView) -> Bool {
+        return shouldHideKeyboard
+    }
+}
+
+// MARK: - Public API
+
+extension EntryComposer {
     func selectLastSentence() {
         guard let sentences = sentences where sentences.count > 0 else {
             return
@@ -121,14 +149,19 @@ class EntryComposer: UIView, MSPTouchableLabelDataSource, MSPTouchableLabelDeleg
         showKeyboard()
     }
 
-    // MARK: - Private implementation
-
-    private func showKeyboard() {
+    func showKeyboard() {
+        shouldHideKeyboard = false
         hiddenTextView.becomeFirstResponder()
     }
 
-    private func hideKeyboard() {
+    func hideKeyboard() {
+        shouldHideKeyboard = true
+        selectedSentence = nil
         hiddenTextView.resignFirstResponder()
     }
-    
+}
+
+// MARK: - Private implementation
+
+extension EntryComposer {
 }

@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class EntryListViewController: UITableViewController, DataSourceDelegate, SentenceChooserDelegate {
+class EntryListViewController: UITableViewController {
     
     // MARK: - Properties
     
@@ -37,10 +37,13 @@ class EntryListViewController: UITableViewController, DataSourceDelegate, Senten
         
         setupDataSource()
         setupTableView()
+        setupGestureRecognizer()
     }
+}
 
-    // MARK: - UITableViewDataSource
-    
+// MARK: - UITableViewDataSource
+
+extension EntryListViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -75,9 +78,11 @@ class EntryListViewController: UITableViewController, DataSourceDelegate, Senten
 
         return cell
     }
-    
-    // MARK: - UITableViewDelegate
-    
+}
+
+// MARK: - UITableViewDelegate
+
+extension EntryListViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let entry = entryForIndexPath(indexPath)
 
@@ -88,22 +93,28 @@ class EntryListViewController: UITableViewController, DataSourceDelegate, Senten
             return UITableViewAutomaticDimension
         }
     }
-    
-    // MARK: - DataSourceDelegate
-    
+}
+
+// MARK: - DataSourceDelegate
+
+extension EntryListViewController: DataSourceDelegate {
     func contentDidChange() {
         tableView.reloadData()
     }
-    
-    // MARK: - SentenceChooserDelegate
-    
+}
+
+// MARK: - SentenceChooserDelegate
+
+extension EntryListViewController: SentenceChooserDelegate {
     func sentenceChosen(sentence: String) {
         currentEntry.addSentenceWithPrefix(sentence, emoji: nil)
         currentEntryCell?.selectLastSentence()
     }
-    
-    // MARK: - Private implementation
-    
+}
+
+// MARK: - Private implementation
+
+extension EntryListViewController {
     private func entryForIndexPath(indexPath: NSIndexPath) -> Entry {
         guard let entry = dataSource.fetchedObjects[indexPath.row] as? Entry else {
             fatalError(":(")
@@ -129,5 +140,19 @@ class EntryListViewController: UITableViewController, DataSourceDelegate, Senten
         fetchRequest.returnsObjectsAsFaults = false
         fetchRequest.fetchBatchSize = 20
         dataSource = DataSource(fetchRequest: fetchRequest, managedObjectContext: DataManager.sharedInstance.managedObjectContext, delegate: self)
+    }
+
+    private func setupGestureRecognizer() {
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: "tapReceived:")
+        gestureRecognizer.cancelsTouchesInView = false
+        view.addGestureRecognizer(gestureRecognizer)
+    }
+
+    @objc private func tapReceived(gestureRecognizer: UITapGestureRecognizer) {
+        guard let currentEntryCell = currentEntryCell where !currentEntryCell.frame.contains(gestureRecognizer.locationInView(view)) else {
+            return
+        }
+
+        currentEntryCell.hideKeyboard()
     }
 }

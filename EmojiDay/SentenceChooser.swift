@@ -17,7 +17,7 @@ class SentenceChooser: UIView {
     // MARK: - Properties
     
     var delegate: SentenceChooserDelegate?
-    let prefixes = ["Saw", "Ate", "Visited", "Made", "Talked to"]
+    let prefixes = ["Saw", "Ate", "Visited", "Made", "Talked to", "Bought"]
     
     // MARK: - UIView
     
