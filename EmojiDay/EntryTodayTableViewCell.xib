@@ -16,21 +16,21 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ytu-Kl-F6r">
-                        <rect key="frame" x="12" y="12" width="35.5" height="17"/>
+                        <rect key="frame" x="12" y="12" width="35.5" height="3.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2h-9L-qFt" userLabel="entry composer wrapper view">
-                        <rect key="frame" x="4" y="33" width="312" height="6.5"/>
+                        <rect key="frame" x="4" y="31.5" width="312" height="0.0"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="ytu-Kl-F6r" firstAttribute="top" secondItem="c4A-aP-Lhv" secondAttribute="topMargin" constant="4" id="4VI-XH-J3C"/>
-                    <constraint firstItem="d2h-9L-qFt" firstAttribute="top" secondItem="ytu-Kl-F6r" secondAttribute="bottom" constant="4" id="D8V-GD-Y4F"/>
+                    <constraint firstItem="d2h-9L-qFt" firstAttribute="top" secondItem="ytu-Kl-F6r" secondAttribute="bottom" constant="16" id="D8V-GD-Y4F"/>
                     <constraint firstItem="d2h-9L-qFt" firstAttribute="leading" secondItem="c4A-aP-Lhv" secondAttribute="leading" constant="4" id="ZhB-EQ-BMk"/>
-                    <constraint firstAttribute="bottom" secondItem="d2h-9L-qFt" secondAttribute="bottom" constant="4" id="gNo-wY-QTX"/>
+                    <constraint firstAttribute="bottom" secondItem="d2h-9L-qFt" secondAttribute="bottom" constant="12" id="gNo-wY-QTX"/>
                     <constraint firstAttribute="trailing" secondItem="d2h-9L-qFt" secondAttribute="trailing" constant="4" id="pys-xp-lWe"/>
                     <constraint firstItem="ytu-Kl-F6r" firstAttribute="leading" secondItem="c4A-aP-Lhv" secondAttribute="leadingMargin" constant="4" id="q84-Gu-ORp"/>
                 </constraints>

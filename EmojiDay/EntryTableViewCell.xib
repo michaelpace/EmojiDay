@@ -22,18 +22,18 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IoF-Y8-GQj">
-                        <rect key="frame" x="12" y="33" width="296" height="120.5"/>
+                        <rect key="frame" x="24" y="37" width="272" height="116.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="IoF-Y8-GQj" firstAttribute="leading" secondItem="fBb-GH-LsP" secondAttribute="leadingMargin" constant="4" id="3fB-ml-ide"/>
-                    <constraint firstItem="IoF-Y8-GQj" firstAttribute="top" secondItem="kLb-Mn-mPx" secondAttribute="bottom" constant="4" id="Kz1-W6-gl3"/>
+                    <constraint firstItem="IoF-Y8-GQj" firstAttribute="leading" secondItem="fBb-GH-LsP" secondAttribute="leadingMargin" constant="16" id="3fB-ml-ide"/>
+                    <constraint firstItem="IoF-Y8-GQj" firstAttribute="top" secondItem="kLb-Mn-mPx" secondAttribute="bottom" constant="8" id="Kz1-W6-gl3"/>
                     <constraint firstItem="kLb-Mn-mPx" firstAttribute="top" secondItem="fBb-GH-LsP" secondAttribute="topMargin" constant="4" id="ZrT-hU-CUp"/>
                     <constraint firstAttribute="bottomMargin" secondItem="IoF-Y8-GQj" secondAttribute="bottom" constant="4" id="uYo-TI-3Q3"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="IoF-Y8-GQj" secondAttribute="trailing" constant="4" id="vqE-S5-vhV"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="IoF-Y8-GQj" secondAttribute="trailing" constant="16" id="vqE-S5-vhV"/>
                     <constraint firstItem="kLb-Mn-mPx" firstAttribute="leading" secondItem="fBb-GH-LsP" secondAttribute="leadingMargin" constant="4" id="wBU-PQ-eJv"/>
                 </constraints>
             </tableViewCellContentView>

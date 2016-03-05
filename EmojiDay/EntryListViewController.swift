@@ -18,7 +18,7 @@ class EntryListViewController: UITableViewController, DataSourceDelegate, Senten
         let entry = dataSource.fetchedObjects.first as? Entry ?? Entry.makeTodayEntry()
 
         if let date = entry.date {
-            return NSDate.dateIsToday(date) ? entry : Entry.makeTodayEntry()
+            return date.isToday() ? entry : Entry.makeTodayEntry()
         } else {
             // execution shouldn't ever enter this block.
             return Entry.makeTodayEntry()
@@ -51,14 +51,15 @@ class EntryListViewController: UITableViewController, DataSourceDelegate, Senten
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: UITableViewCell
+        let entry = entryForIndexPath(indexPath)
         
-        if indexPath.row == 0 {
+        if entry.isTodayEntry() {
             guard let todayCell = tableView.dequeueReusableCellWithIdentifier(EntryTodayTableViewCell.nibIdentifier,
                 forIndexPath: indexPath) as? EntryTodayTableViewCell else {
                     fatalError("Error dequeueing EntryTodayTableViewCell")
             }
             
-            todayCell.entry = entryForIndexPath(indexPath)
+            todayCell.entry = entry
             currentEntryCell = todayCell
             
             cell = todayCell
@@ -68,8 +69,7 @@ class EntryListViewController: UITableViewController, DataSourceDelegate, Senten
                     fatalError("Error dequeueing EntryTableViewCell")
             }
             
-            entryCell.entry = entryForIndexPath(indexPath)
-            
+            entryCell.entry = entry
             cell = entryCell
         }
 
@@ -80,8 +80,13 @@ class EntryListViewController: UITableViewController, DataSourceDelegate, Senten
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let entry = entryForIndexPath(indexPath)
-        let maximumLineWidth = EntryTodayTableViewCell.widthOfEntryComposerGivenTableView(tableView)
-        return entry.heightGivenMaximumLineWidth(maximumLineWidth) + EntryTodayTableViewCell.heightOfCellWithNoContent
+
+        if entry.isTodayEntry() {
+            let maximumLineWidth = EntryTodayTableViewCell.widthOfEntryComposerGivenTableView(tableView)
+            return entry.heightGivenMaximumLineWidth(maximumLineWidth) + EntryTodayTableViewCell.heightOfCellWithNoContent
+        } else {
+            return UITableViewAutomaticDimension
+        }
     }
     
     // MARK: - DataSourceDelegate
@@ -116,6 +121,7 @@ class EntryListViewController: UITableViewController, DataSourceDelegate, Senten
         tableView.allowsSelection = false
         tableView.tableHeaderView = sentenceChooser
         tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.estimatedRowHeight = 50
     }
     
     private func setupDataSource() {

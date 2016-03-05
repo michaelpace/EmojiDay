@@ -77,8 +77,12 @@ class EntryComposer: UIView, MSPTouchableLabelDataSource, MSPTouchableLabelDeleg
     // MARK: - MSPTouchableLabelDelegate
     
     func touchableLabel(touchableLabel: MSPTouchableLabel!, touchesDidEndAtIndex index: Int) {
+        guard index >= 0 && index < sentences?.count else {
+            return
+        }
+
         showKeyboard()
-        selectedSentence = sentences![index]
+        selectedSentence = sentences?[index]
     }
     
     // MARK: - EmojiKeyboardDelegate

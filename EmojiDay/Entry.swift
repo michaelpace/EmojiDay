@@ -41,6 +41,14 @@ class Entry: NSManagedObject, ManagedObjectType {
     }
     
     // MARK: - Public API
+
+    func isTodayEntry() -> Bool {
+        guard let date = date else {
+            return false
+        }
+
+        return date.isToday()
+    }
     
     static func makeTodayEntry() -> Entry {
         guard let entry = NSEntityDescription.insertNewObjectForEntityForName(Entry.entityName, inManagedObjectContext: DataManager.sharedInstance.managedObjectContext) as? Entry else {
@@ -52,8 +60,8 @@ class Entry: NSManagedObject, ManagedObjectType {
     }
     
     func addSentenceWithPrefix(prefix: String, emoji: String?) {
-        if let lastSentence = sentences?.lastObject as? Sentence {
-            if lastSentence.emojiState == EmojiBlankState.Blank && NSDate.dateIsToday(date!) {
+        if let lastSentence = sentences?.lastObject as? Sentence, date = date {
+            if lastSentence.emojiState == EmojiBlankState.Blank && date.isToday() {
                 lastSentence.prefix = prefix
                 lastSentence.addEmoji(emoji, save: true)
                 return

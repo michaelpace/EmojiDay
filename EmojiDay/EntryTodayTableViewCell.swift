@@ -8,7 +8,8 @@
 
 import Foundation
 
-private let entryComposerWrapperViewConstraintConstant = CGFloat(32.0)
+private let entryComposerWrapperViewBottomConstraintConstant: CGFloat = 40
+private let entryComposerWrapperViewLeftRightConstraintConstant: CGFloat = 16
 
 class EntryTodayTableViewCell: UITableViewCell, TableViewCellData {
     
@@ -26,7 +27,7 @@ class EntryTodayTableViewCell: UITableViewCell, TableViewCellData {
     }
 
     class var heightOfCellWithNoContent: CGFloat {
-        return entryComposerWrapperViewConstraintConstant * 2
+        return entryComposerWrapperViewBottomConstraintConstant * 2
     }
 
     // MARK: - Private properties
@@ -47,9 +48,9 @@ class EntryTodayTableViewCell: UITableViewCell, TableViewCellData {
             fatalError()
         }
 
-        entryComposerWrapperViewLeadingConstraint.constant = entryComposerWrapperViewConstraintConstant
-        entryComposerWrapperViewTrailingConstraint.constant = entryComposerWrapperViewConstraintConstant
-        entryComposerWrapperViewBottomConstraint.constant = entryComposerWrapperViewConstraintConstant
+        entryComposerWrapperViewLeadingConstraint.constant = entryComposerWrapperViewLeftRightConstraintConstant
+        entryComposerWrapperViewTrailingConstraint.constant = entryComposerWrapperViewLeftRightConstraintConstant
+        entryComposerWrapperViewBottomConstraint.constant = entryComposerWrapperViewBottomConstraintConstant
         
         entryComposer.frame = entryComposerWrapperView.bounds
         entryComposerWrapperView.addSubview(entryComposer)
@@ -66,7 +67,7 @@ class EntryTodayTableViewCell: UITableViewCell, TableViewCellData {
     // MARK: - Public API
     
     class func widthOfEntryComposerGivenTableView(tableView: UITableView) -> CGFloat {
-        return tableView.bounds.width - (entryComposerWrapperViewConstraintConstant * 2)
+        return tableView.bounds.width - (entryComposerWrapperViewLeftRightConstraintConstant * 2)
     }
 
     func selectLastSentence() {

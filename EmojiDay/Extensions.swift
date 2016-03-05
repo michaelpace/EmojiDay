@@ -36,8 +36,8 @@ extension NSDate {
         return formatter.stringFromDate(self)
     }
     
-    static func dateIsToday(date: NSDate) -> Bool {
-        return NSDate.daysBetweenDate(NSDate(), andDate: date) == 0
+    func isToday() -> Bool {
+        return NSDate.daysBetweenDate(NSDate(), andDate: self) == 0
     }
     
     static func daysBetweenDate(firstDate: NSDate, andDate secondDate: NSDate) -> Int {
